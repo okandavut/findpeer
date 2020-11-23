@@ -1,82 +1,88 @@
 {
-  "Back-end Software Development": [
-    {
-      "Name": "Okan DAVUT",
-      "Superpeer": "https://superpeer.com/okandavut",
-      "Description": "Software Engineer, Open Source Enthusiast and Blogger",
-      "ImgUrl" : "https://pbs.twimg.com/profile_images/1258078540676755463/NhJ04igj.jpg"
-    }
+  "Categories": [
+    { "Name": "Backend", "Id": "1" },
+    { "Name": "Computer Vision and Image Processing", "Id": "2" },
+    { "Name": "DevOps", "Id": "3" },
+    { "Name": "Embedded Systems", "Id": "4" },
+    { "Name": "Enterprise Architecture", "Id": "5" },
+    { "Name": "Fintech", "Id": "5" },
+    { "Name": "Mobile App Software Development", "Id": "6" },
+    { "Name": "Software Career Menthorship", "Id": "7" },
+    { "Name": "Other", "Id": "8" }
   ],
-  "Computer Vision and Image Processing": [
-    {
-      "Name": "Okan DAVUT",
-      "Superpeer": "https://superpeer.com/okandavut",
-      "Description": "Software Engineer, Open Source Enthusiast and Blogger",
-      "ImgUrl" : "https://pbs.twimg.com/profile_images/1258078540676755463/NhJ04igj.jpg"
-    }
-  ],
-  "DevOps": [
-    {
-      "Name": "Okan DAVUT",
-      "Superpeer": "https://superpeer.com/okandavut",
-      "Description": "Software Engineer, Open Source Enthusiast and Blogger",
-      "ImgUrl" : "https://pbs.twimg.com/profile_images/1258078540676755463/NhJ04igj.jpg"
-    }
-  ],
-  "Embedded Systems": [
-    {
-      "Name": "Okan DAVUT",
-      "Superpeer": "https://superpeer.com/okandavut",
-      "Description": "Software Engineer, Open Source Enthusiast and Blogger",
-      "ImgUrl" : "https://pbs.twimg.com/profile_images/1258078540676755463/NhJ04igj.jpg"
-    }
-  ],
-  "Enterprise Architecture": [
-    {
-      "Name": "Okan DAVUT",
-      "Superpeer": "https://superpeer.com/okandavut",
-      "Description": "Software Engineer, Open Source Enthusiast and Blogger",
-      "ImgUrl" : "https://pbs.twimg.com/profile_images/1258078540676755463/NhJ04igj.jpg"
-    }
-  ],
-  "Fintech": [
-    {
-      "Name": "Okan DAVUT",
-      "Superpeer": "https://superpeer.com/okandavut",
-      "Description": "Software Engineer, Open Source Enthusiast and Blogger",
-      "ImgUrl" : "https://pbs.twimg.com/profile_images/1258078540676755463/NhJ04igj.jpg"
-    }
-  ],
-  "Front-end Software Development": [
-    {
-      "Name": "Okan DAVUT",
-      "Superpeer": "https://superpeer.com/okandavut",
-      "Description": "Software Engineer, Open Source Enthusiast and Blogger",
-      "ImgUrl" : "https://pbs.twimg.com/profile_images/1258078540676755463/NhJ04igj.jpg"
-    }
-  ],
-  "Mobile App Software Development": [
-    {
-      "Name": "Okan DAVUT",
-      "Superpeer": "https://superpeer.com/okandavut",
-      "Description": "Software Engineer, Open Source Enthusiast and Blogger",
-      "ImgUrl" : "https://pbs.twimg.com/profile_images/1258078540676755463/NhJ04igj.jpg"
-    }
-  ],
-  "Software Career Menthorship": [
-    {
-      "Name": "Okan DAVUT",
-      "Superpeer": "https://superpeer.com/okandavut",
-      "Description": "Software Engineer, Open Source Enthusiast and Blogger",
-      "ImgUrl" : "https://pbs.twimg.com/profile_images/1258078540676755463/NhJ04igj.jpg"
-    }
-  ],
-  "Other": [
-    {
-      "Name": "Okan DAVUT",
-      "Superpeer": "https://superpeer.com/okandavut",
-      "Description": "Software Engineer, Open Source Enthusiast and Blogger",
-      "ImgUrl" : "https://pbs.twimg.com/profile_images/1258078540676755463/NhJ04igj.jpg"
-    }
+  "PeerList": [
+    [
+      {
+        "Name": "Okan DAVUT",
+        "Superpeer": "https://superpeer.com/okandavut",
+        "Description": "Software Engineer, Open Source Enthusiast and Blogger",
+        "ImgUrl": "https://pbs.twimg.com/profile_images/1258078540676755463/NhJ04igj.jpg",
+        "Category": "1"
+      },
+
+      {
+        "Name": "Okan DAVUT",
+        "Superpeer": "https://superpeer.com/okandavut",
+        "Description": "Software Engineer, Open Source Enthusiast and Blogger",
+        "ImgUrl": "https://pbs.twimg.com/profile_images/1258078540676755463/NhJ04igj.jpg",
+        "Category": "2"
+      },
+      {
+        "Name": "Okan DAVUT",
+        "Superpeer": "https://superpeer.com/okandavut",
+        "Description": "Software Engineer, Open Source Enthusiast and Blogger",
+        "ImgUrl": "https://pbs.twimg.com/profile_images/1258078540676755463/NhJ04igj.jpg",
+        "Category": "3"
+      },
+      {
+        "Name": "Okan DAVUT",
+        "Superpeer": "https://superpeer.com/okandavut",
+        "Description": "Software Engineer, Open Source Enthusiast and Blogger",
+        "ImgUrl": "https://pbs.twimg.com/profile_images/1258078540676755463/NhJ04igj.jpg",
+        "Category": "4"
+      },
+      {
+        "Name": "Okan DAVUT",
+        "Superpeer": "https://superpeer.com/okandavut",
+        "Description": "Software Engineer, Open Source Enthusiast and Blogger",
+        "ImgUrl": "https://pbs.twimg.com/profile_images/1258078540676755463/NhJ04igj.jpg",
+        "Category": "5"
+      },
+      {
+        "Name": "Okan DAVUT",
+        "Superpeer": "https://superpeer.com/okandavut",
+        "Description": "Software Engineer, Open Source Enthusiast and Blogger",
+        "ImgUrl": "https://pbs.twimg.com/profile_images/1258078540676755463/NhJ04igj.jpg",
+        "Category": "6"
+      },
+      {
+        "Name": "Okan DAVUT",
+        "Superpeer": "https://superpeer.com/okandavut",
+        "Description": "Software Engineer, Open Source Enthusiast and Blogger",
+        "ImgUrl": "https://pbs.twimg.com/profile_images/1258078540676755463/NhJ04igj.jpg",
+        "Category": "7"
+      },
+      {
+        "Name": "Okan DAVUT",
+        "Superpeer": "https://superpeer.com/okandavut",
+        "Description": "Software Engineer, Open Source Enthusiast and Blogger",
+        "ImgUrl": "https://pbs.twimg.com/profile_images/1258078540676755463/NhJ04igj.jpg",
+        "Category": "8"
+      },
+      {
+        "Name": "Okan DAVUT",
+        "Superpeer": "https://superpeer.com/okandavut",
+        "Description": "Software Engineer, Open Source Enthusiast and Blogger",
+        "ImgUrl": "https://pbs.twimg.com/profile_images/1258078540676755463/NhJ04igj.jpg",
+        "Category": "7"
+      },
+      {
+        "Name": "Okan DAVUT",
+        "Superpeer": "https://superpeer.com/okandavut",
+        "Description": "Software Engineer, Open Source Enthusiast and Blogger",
+        "ImgUrl": "https://pbs.twimg.com/profile_images/1258078540676755463/NhJ04igj.jpg",
+        "Category": "8"
+      }
+    ]
   ]
 }
