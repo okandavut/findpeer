@@ -10,6 +10,7 @@
   "dependencies": {
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
+    "axios": "^0.21.0",
     "bootstrap": "^4.5.3",
     "next": "^9.5.3",
     "node-fetch": "^2.6.1",

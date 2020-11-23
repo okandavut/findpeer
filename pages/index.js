@@ -9,31 +9,36 @@ import {
   ListGroup,
   Form,
 } from "react-bootstrap";
+import axios from "axios";
 
 export default function Home() {
-  const [peerData, setPeerData] = useState({});
+  const [peerData, setPeerData] = useState([]);
   const [peerList, setPeerList] = useState([]);
+  const [categories, setCategories] = useState([]);
   const [searchText, setSearchText] = useState("");
 
   useEffect(() => {
     getPeers();
+    getCategories();
   }, []);
 
-  const getPeers = () => {
-    fetch(
-      "https://raw.githubusercontent.com/okandavut/find-superpeer/main/peerlist.json"
-    )
-      .then((res) => res.json())
-      .then((json) => {
-        setPeerData(json);
-        setPeerList(json.PeerList);
-      });
-  };
+  async function getCategories() {
+    const res = await axios.get("https://findsupeerbackend.herokuapp.com/categories");
+    console.log(res);
+    setCategories(res.data);
+  }
+
+  async function getPeers() {
+    const res = await axios.get("https://findsupeerbackend.herokuapp.com/peers");
+    console.log(res);
+    setPeerData(res.data);
+    setPeerList(res.data);
+  }
 
   const filterPeersAsCategory = (category) => {
     if (category == "clear") getPeers();
     else {
-      var newList = peerData.PeerList.filter((item) => {
+      var newList = peerData.filter((item) => {
         return item.Category.toLowerCase().includes(category.toLowerCase());
       });
       setPeerList(newList);
@@ -45,7 +50,7 @@ export default function Home() {
 
     if (code === 13 || event.button == 0) {
       if (searchText) {
-        var newList = peerData.PeerList.filter((item) => {
+        var newList = peerData.filter((item) => {
           return (
             item.Description.toLowerCase().includes(searchText.toLowerCase()) ||
             item.Name.toLowerCase().includes(searchText.toLowerCase())
@@ -73,7 +78,7 @@ export default function Home() {
             />
           </Col>
           <Col xs={1}>
-            <Button variant="primary">Search</Button>
+            <Button variant="primary" onClick={enterPressed.bind(this)}>Search</Button>
           </Col>
         </Row>
         <br />
@@ -88,20 +93,20 @@ export default function Home() {
               >
                 Clear Filter
               </ListGroup.Item>
-              {peerData.Categories
-                ? peerData.Categories.map((category, k) => {
-                    return (
-                      <ListGroup.Item
-                        key={k}
-                        action
-                        onClick={(e) => {
-                          filterPeersAsCategory(category.Name);
-                        }}
-                      >
-                        {category.Name}
-                      </ListGroup.Item>
-                    );
-                  })
+              {categories
+                ? categories.map((category, k) => {
+                  return (
+                    <ListGroup.Item
+                      key={k}
+                      action
+                      onClick={(e) => {
+                        filterPeersAsCategory(category.Name);
+                      }}
+                    >
+                      {category.Name}
+                    </ListGroup.Item>
+                  );
+                })
                 : ""}
             </ListGroup>
           </Col>
@@ -109,43 +114,43 @@ export default function Home() {
             <Row>
               {peerList
                 ? peerList.map((peer, i) => {
-                    return (
-                      <Col xs={4} key={i} style={{ marginBottom: "1rem" }}>
-                        <Card
+                  return (
+                    <Col xs={4} key={i} style={{ marginBottom: "1rem" }}>
+                      <Card
+                        style={{
+                          width: "17rem",
+                          maxHeight: "50rem",
+                          textAlign: "center",
+                        }}
+                        key={i}
+                      >
+                        <Card.Img
+                          variant="top"
+                          src={peer.ImgUrl}
                           style={{
-                            width: "17rem",
+                            width: "13rem",
                             maxHeight: "50rem",
-                            textAlign: "center",
+                            margin: "1rem auto 1rem auto",
                           }}
-                          key={i}
-                        >
-                          <Card.Img
-                            variant="top"
-                            src={peer.ImgUrl}
-                            style={{
-                              width: "13rem",
-                              maxHeight: "50rem",
-                              margin: "1rem auto 1rem auto",
-                            }}
-                          />
-                          <Card.Body>
-                            <Card.Title>{peer.Name}</Card.Title>
-                            <Card.Text>
-                              {peer.Description} <br />
-                              <b>{peer.Category}</b>
-                            </Card.Text>
-                            <Button
-                              variant="primary"
-                              target="_blank"
-                              href={peer.Superpeer}
-                            >
-                              Let's Talk
+                        />
+                        <Card.Body>
+                          <Card.Title>{peer.Name}</Card.Title>
+                          <Card.Text>
+                            {peer.Description} <br />
+                            <b>{peer.Category}</b>
+                          </Card.Text>
+                          <Button
+                            variant="primary"
+                            target="_blank"
+                            href={peer.Superpeer}
+                          >
+                            Let's Talk
                             </Button>
-                          </Card.Body>
-                        </Card>
-                      </Col>
-                    );
-                  })
+                        </Card.Body>
+                      </Card>
+                    </Col>
+                  );
+                })
                 : ""}
             </Row>
           </Col>
