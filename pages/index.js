@@ -34,7 +34,7 @@ export default function Home() {
     if (category == "clear") getPeers();
     else {
       var newList = peerData.PeerList.filter((item) => {
-        return item.Category === category;
+        return item.Category.toLowerCase().includes(category.toLowerCase());
       });
       setPeerList(newList);
     }
@@ -51,7 +51,6 @@ export default function Home() {
             item.Name.toLowerCase().includes(searchText.toLowerCase())
           );
         });
-
         setPeerList(newList);
       }
     }
@@ -61,24 +60,25 @@ export default function Home() {
     <>
       <Container>
         <br />
+
+        <h3>Find Your Peer</h3>
         <br />
         <Row>
-          <Col>
-            <h3>Find Your Peer</h3>
-            <br></br>
-            <Form.Group>
-              <Form.Control
-                type="text"
-                placeholder="Search"
-                onChange={(e) => setSearchText(e.target.value)}
-                onKeyPress={enterPressed.bind(this)}
-              />
-            </Form.Group>
+          <Col xs={7}>
+            <Form.Control
+              type="text"
+              placeholder="Search with Name or Description"
+              onChange={(e) => setSearchText(e.target.value)}
+              onKeyPress={enterPressed.bind(this)}
+            />
+          </Col>
+          <Col xs={1}>
+            <Button variant="primary">Search</Button>
           </Col>
         </Row>
         <br />
         <Row>
-          <Col xs={2}>
+          <Col xs={3}>
             <ListGroup>
               <ListGroup.Item
                 action
@@ -105,21 +105,42 @@ export default function Home() {
                 : ""}
             </ListGroup>
           </Col>
-          <Col xs={10} style={{ display: "flex", flexDirection: "row" }}>
+          <Col xs={9} style={{ display: "flex", flexDirection: "row" }}>
             <Row>
               {peerList
                 ? peerList.map((peer, i) => {
                     return (
-                      <Col xs={4}  key={i}>
-                        <Card style={{ width: "18rem" }} key={i}>
-                          <Card.Img variant="top" src={peer.ImgUrl} />
+                      <Col xs={4} key={i} style={{ marginBottom: "1rem" }}>
+                        <Card
+                          style={{
+                            width: "17rem",
+                            maxHeight: "50rem",
+                            textAlign: "center",
+                          }}
+                          key={i}
+                        >
+                          <Card.Img
+                            variant="top"
+                            src={peer.ImgUrl}
+                            style={{
+                              width: "13rem",
+                              maxHeight: "50rem",
+                              margin: "1rem auto 1rem auto",
+                            }}
+                          />
                           <Card.Body>
                             <Card.Title>{peer.Name}</Card.Title>
                             <Card.Text>
                               {peer.Description} <br />
                               <b>{peer.Category}</b>
                             </Card.Text>
-                            <Button variant="primary">Go somewhere</Button>
+                            <Button
+                              variant="primary"
+                              target="_blank"
+                              href={peer.Superpeer}
+                            >
+                              Let's Talk
+                            </Button>
                           </Card.Body>
                         </Card>
                       </Col>
