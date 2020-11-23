@@ -5,10 +5,10 @@
     { "Name": "DevOps", "Id": "3" },
     { "Name": "Embedded Systems", "Id": "4" },
     { "Name": "Enterprise Architecture", "Id": "5" },
-    { "Name": "Fintech", "Id": "5" },
-    { "Name": "Mobile App Software Development", "Id": "6" },
-    { "Name": "Software Career Menthorship", "Id": "7" },
-    { "Name": "Other", "Id": "8" }
+    { "Name": "Fintech", "Id": "6" },
+    { "Name": "Mobile App Software Development", "Id": "7" },
+    { "Name": "Software Career Menthorship", "Id": "8" },
+    { "Name": "Other", "Id": "9" }
   ],
   "PeerList": [
     {
@@ -16,7 +16,7 @@
       "Superpeer": "https://superpeer.com/okandavut",
       "Description": "Software Engineer, Open Source Enthusiast and Blogger",
       "ImgUrl": "https://pbs.twimg.com/profile_images/1258078540676755463/NhJ04igj.jpg",
-      "Category": "1"
+      "Category": "Backend"
     },
 
     {
@@ -24,56 +24,42 @@
       "Superpeer": "https://superpeer.com/okandavut",
       "Description": "Software Engineer, Open Source Enthusiast and Blogger",
       "ImgUrl": "https://pbs.twimg.com/profile_images/1258078540676755463/NhJ04igj.jpg",
-      "Category": "2"
+      "Category": "Computer Vision and Image Processing"
     },
     {
       "Name": "Okan DAVUT",
       "Superpeer": "https://superpeer.com/okandavut",
       "Description": "Software Engineer, Open Source Enthusiast and Blogger",
       "ImgUrl": "https://pbs.twimg.com/profile_images/1258078540676755463/NhJ04igj.jpg",
-      "Category": "3"
+      "Category": "DevOps"
     },
     {
       "Name": "Okan DAVUT",
       "Superpeer": "https://superpeer.com/okandavut",
       "Description": "Software Engineer, Open Source Enthusiast and Blogger",
       "ImgUrl": "https://pbs.twimg.com/profile_images/1258078540676755463/NhJ04igj.jpg",
-      "Category": "4"
+      "Category": "Embedded Systems"
     },
     {
       "Name": "Okan DAVUT",
       "Superpeer": "https://superpeer.com/okandavut",
       "Description": "Software Engineer, Open Source Enthusiast and Blogger",
       "ImgUrl": "https://pbs.twimg.com/profile_images/1258078540676755463/NhJ04igj.jpg",
-      "Category": "5"
+      "Category": "Enterprise Architecture"
     },
     {
       "Name": "Okan DAVUT",
       "Superpeer": "https://superpeer.com/okandavut",
       "Description": "Software Engineer, Open Source Enthusiast and Blogger",
       "ImgUrl": "https://pbs.twimg.com/profile_images/1258078540676755463/NhJ04igj.jpg",
-      "Category": "6"
+      "Category": "Fintech"
     },
     {
       "Name": "Okan DAVUT",
       "Superpeer": "https://superpeer.com/okandavut",
       "Description": "Software Engineer, Open Source Enthusiast and Blogger",
       "ImgUrl": "https://pbs.twimg.com/profile_images/1258078540676755463/NhJ04igj.jpg",
-      "Category": "7"
-    },
-    {
-      "Name": "Okan DAVUT",
-      "Superpeer": "https://superpeer.com/okandavut",
-      "Description": "Software Engineer, Open Source Enthusiast and Blogger",
-      "ImgUrl": "https://pbs.twimg.com/profile_images/1258078540676755463/NhJ04igj.jpg",
-      "Category": "8"
-    },
-    {
-      "Name": "Okan DAVUT",
-      "Superpeer": "https://superpeer.com/okandavut",
-      "Description": "Software Engineer, Open Source Enthusiast and Blogger",
-      "ImgUrl": "https://pbs.twimg.com/profile_images/1258078540676755463/NhJ04igj.jpg",
-      "Category": "7"
+      "Category": "Mobile App Software Development"
     },
     {
       "Name": "Okan DAVUT",
@@ -81,6 +67,20 @@
       "Description": "Software Engineer, Open Source Enthusiast and Blogger",
       "ImgUrl": "https://pbs.twimg.com/profile_images/1258078540676755463/NhJ04igj.jpg",
       "Category": "8"
+    },
+    {
+      "Name": "Okan DAVUT",
+      "Superpeer": "https://superpeer.com/okandavut",
+      "Description": "Software Engineer, Open Source Enthusiast and Blogger",
+      "ImgUrl": "https://pbs.twimg.com/profile_images/1258078540676755463/NhJ04igj.jpg",
+      "Category": "Software Career Menthorship"
+    },
+    {
+      "Name": "Okan DAVUT",
+      "Superpeer": "https://superpeer.com/okandavut",
+      "Description": "Software Engineer, Open Source Enthusiast and Blogger",
+      "ImgUrl": "https://pbs.twimg.com/profile_images/1258078540676755463/NhJ04igj.jpg",
+      "Category": "Other"
     }
   ]
 }
