@@ -1,15 +1,15 @@
 {
   "Categories": [
-    { "Name": "Back-end Software Development", "Id": "1" },
-    { "Name": "Computer Vision and Image Processing", "Id": "2" },
+    { "Name": "Backend", "Id": "1" },
+    { "Name": "Machine Learning & AI", "Id": "2" },
     { "Name": "DevOps", "Id": "3" },
     { "Name": "Embedded Systems", "Id": "4" },
     { "Name": "Enterprise Architecture", "Id": "5" },
     { "Name": "Fintech", "Id": "6" },
-    { "Name": "Mobile App Software Development", "Id": "7" },
-    { "Name": "Software Career Menthorship", "Id": "8" },
+    { "Name": "Mobile", "Id": "7" },
+    { "Name": "Software Career Menthor", "Id": "8" },
     { "Name": "Other", "Id": "9" },
-    { "Name": "Front-end Software Development", "Id": "10" },
+    { "Name": "Frontend", "Id": "10" },
     { "Name": "Design", "Id": "11" }
   ],
   "PeerList": [
@@ -18,7 +18,7 @@
       "Superpeer": "https://superpeer.com/okandavut",
       "Description": "Software Engineer, Open Source Enthusiast and Blogger",
       "ImgUrl": "https://pbs.twimg.com/profile_images/1248539396065783808/gdMpvB-S_400x400.jpg",
-      "Category": "Back-end Software Development"
+      "Category": "Backend"
     },
 
     {
@@ -26,133 +26,133 @@
       "Superpeer": "https://superpeer.com/ilteriskeskin",
       "Description": "Software Developer, Free Software Enthusiast, Python and GNU/Linux Lover",
       "ImgUrl": "https://pbs.twimg.com/profile_images/1258078540676755463/NhJ04igj.jpg",
-      "Category": "Back-end Software Development"
+      "Category": "Backend"
     },
     {
       "Name": "Azmi Mengü",
       "Superpeer": "https://superpeer.com/azmimengu",
       "Description": "Software Architect, AWS Community Builder",
       "ImgUrl": "https://pbs.twimg.com/profile_images/1258078540676755463/NhJ04igj.jpg",
-      "Category": "Back-end Software Development,DevOps"
+      "Category": "Backend,DevOps"
     },
     {
       "Name": "",
       "Superpeer": "",
       "Description": "",
       "ImgUrl": "https://pbs.twimg.com/profile_images/1258078540676755463/NhJ04igj.jpg",
-      "Category": "Back-end Software Development"
+      "Category": "Backend"
     },
     {
       "Name": "Baris Ceviz",
       "Superpeer": "https://superpeer.com/peacecwz",
       "Description": "Jedi Software Engineer, Trainer/Blogger, MSP @Microsoft",
       "ImgUrl": "https://pbs.twimg.com/profile_images/1258078540676755463/NhJ04igj.jpg",
-      "Category": "Back-end Software Development,Enterprise Architecture, Front-end Software Development, Mobile App Software Development, Software Career Menthorship"
+      "Category": "Backend,Enterprise Architecture, Frontend, Mobile, Software Career Menthor"
     },
     {
       "Name": "Cagatay Cali",
       "Superpeer": "https://superpeer.com/cagatay",
       "Description": "Software Engineer",
       "ImgUrl": "https://pbs.twimg.com/profile_images/1258078540676755463/NhJ04igj.jpg",
-      "Category": "Back-end Software Development,Front-end Software Development "
+      "Category": "Backend,Frontend "
     },
     {
       "Name": "Ebru Gulec",
       "Superpeer": "https://superpeer.com/ebrugulec",
       "Description": "Software Engineer",
       "ImgUrl": "https://pbs.twimg.com/profile_images/1258078540676755463/NhJ04igj.jpg",
-      "Category": "Back-end Software Development, Front-end Software Development"
+      "Category": "Backend, Frontend"
     },
     {
       "Name": "Erhan Yakut",
       "Superpeer": "https://superpeer.com/yakuter",
       "Description": "PHP, Go and JS Developer, Open Source, Blogger",
       "ImgUrl": "https://pbs.twimg.com/profile_images/1258078540676755463/NhJ04igj.jpg",
-      "Category": "Back-end Software Development, Software Career Menthorship"
+      "Category": "Backend, Software Career Menthor"
     },
     {
       "Name": "Eser Ozvataf",
       "Superpeer": "https://superpeer.com/eser",
       "Description": "Software Consultant, Engineering Manager, Open Source Enthusiast, Streamer",
       "ImgUrl": "https://pbs.twimg.com/profile_images/1258078540676755463/NhJ04igj.jpg",
-      "Category": "Back-end Software Development, Front-end Software Development"
+      "Category": "Backend, Frontend"
     },
     {
       "Name": "Furkan Bozdağ",
       "Superpeer": "https://superpeer.com/bozd4g",
       "Description": "Software Engineer, Open Source Enthusiast and Blogger",
       "ImgUrl": "https://pbs.twimg.com/profile_images/1258078540676755463/NhJ04igj.jpg",
-      "Category": "Back-end Software Development"
+      "Category": "Backend"
     },
     {
       "Name": "İzni Burak Demirtaş",
       "Superpeer": "https://superpeer.com/izniburak",
       "Description": "Software Engineer, Open Source Enthusiast",
       "ImgUrl": "https://pbs.twimg.com/profile_images/1258078540676755463/NhJ04igj.jpg",
-      "Category": "Back-end Software Development,Front-end Software Development"
+      "Category": "Backend,Frontend"
     },
     {
       "Name": "Kaan Özbudak",
       "Superpeer": "https://superpeer.com/kaanozbudak",
       "Description": "Software Engineer, Big Data-Open Source",
       "ImgUrl": "https://pbs.twimg.com/profile_images/1258078540676755463/NhJ04igj.jpg",
-      "Category": "Back-end Software Development"
+      "Category": "Backend"
     },
     {
       "Name": "Mert Koseoglu",
       "Superpeer": "https://superpeer.com/mksglu",
       "Description": "Software Developer",
       "ImgUrl": "https://pbs.twimg.com/profile_images/1258078540676755463/NhJ04igj.jpg",
-      "Category": "Back-end Software Development, Front-end Software Development"
+      "Category": "Backend, Frontend"
     },
     {
       "Name": "Muhammed Hilmi Koca",
       "Superpeer": "https://superpeer.com/muhammed",
       "Description": "Senior Software Developer",
       "ImgUrl": "https://pbs.twimg.com/profile_images/1258078540676755463/NhJ04igj.jpg",
-      "Category": "Back-end Software Development"
+      "Category": "Backend"
     },
     {
       "Name": "Selçuk Ermaya",
       "Superpeer": "https://superpeer.com/selcuk",
       "Description": "Software & Product Developer, Enterprise Architect based on IAM and PAM.",
       "ImgUrl": "https://pbs.twimg.com/profile_images/1258078540676755463/NhJ04igj.jpg",
-      "Category": "Back-end Software Development,Enterprise Architecture, Software Career Menthorship"
+      "Category": "Backend,Enterprise Architecture, Software Career Menthor"
     },
     {
       "Name": "Suat Köse",
       "Superpeer": "https://superpeer.com/suadev",
       "Description": "Software Engineer, Blogger",
       "ImgUrl": "https://pbs.twimg.com/profile_images/1258078540676755463/NhJ04igj.jpg",
-      "Category": "Back-end Software Development, Software Career Menthorship"
+      "Category": "Backend, Software Career Menthor"
     },
     {
       "Name": "Turgay Özgür",
       "Superpeer": "https://superpeer.com/turgay",
       "Description": "Software Architect",
       "ImgUrl": "https://pbs.twimg.com/profile_images/1258078540676755463/NhJ04igj.jpg",
-      "Category": "Back-end Software Development"
+      "Category": "Backend"
     },
     {
       "Name": "Yunus Bulut",
       "Superpeer": "https://superpeer.com/yunusbulut",
       "Description": "Software Developer, Ruby Developer",
       "ImgUrl": "https://pbs.twimg.com/profile_images/1258078540676755463/NhJ04igj.jpg",
-      "Category": "Back-end Software Development, Other"
+      "Category": "Backend, Other"
     },
     {
       "Name": "Umut Kahraman",
       "Superpeer": "https://superpeer.com/kahraman",
       "Description": "Software Engineer",
       "ImgUrl": "https://pbs.twimg.com/profile_images/1258078540676755463/NhJ04igj.jpg",
-      "Category": "Back-end Software Development"
+      "Category": "Backend"
     },
     {
       "Name": "İbrahim Delibaşoğlu",
       "Superpeer": "https://superpeer.com/mribrahim",
       "Description": "Computer Vision/Image processing Researcher",
       "ImgUrl": "https://pbs.twimg.com/profile_images/1258078540676755463/NhJ04igj.jpg",
-      "Category": "Computer Vision and Image Processing"
+      "Category": "Machine Learning & AI"
     },
     {
       "Name": "Derya Sezen",
@@ -194,49 +194,49 @@
       "Superpeer": "https://superpeer.com/enesozturk",
       "Description": "JavaScript Developer Open Source, UI Design and Paragliding Enthusiast",
       "ImgUrl": "https://pbs.twimg.com/profile_images/1258078540676755463/NhJ04igj.jpg",
-      "Category": "Front-end Software Development"
+      "Category": "Frontend"
     },
     {
       "Name": "Fatih Kadir Akın",
       "Superpeer": "https://superpeer.com/f",
       "Description": "JavaScript Developer, Open Source Enthusiast, Community Organizer, Author",
       "ImgUrl": "https://pbs.twimg.com/profile_images/1258078540676755463/NhJ04igj.jpg",
-      "Category": "Front-end Software Development, Software Career Menthorship"
+      "Category": "Frontend, Software Career Menthor"
     },
     {
       "Name": "Hatice Edis",
       "Superpeer": "https://superpeer.com/edisdev",
       "Description": "Front-End Developer",
       "ImgUrl": "https://pbs.twimg.com/profile_images/1258078540676755463/NhJ04igj.jpg",
-      "Category": "Front-end Software Development"
+      "Category": "Frontend"
     },
     {
       "Name": "Mert Cukuren",
       "Superpeer": "https://superpeer.com/ui",
       "Description": "UI Developer",
       "ImgUrl": "https://pbs.twimg.com/profile_images/1258078540676755463/NhJ04igj.jpg",
-      "Category": "Front-end Software Development"
+      "Category": "Frontend"
     },
     {
       "Name": "Murat Benli",
       "Superpeer": "https://superpeer.com/muratbenli",
       "Description": "Front-End Developer",
       "ImgUrl": "https://pbs.twimg.com/profile_images/1258078540676755463/NhJ04igj.jpg",
-      "Category": "Front-end Software Development"
+      "Category": "Frontend"
     },
     {
       "Name": "Onur Aslan",
       "Superpeer": "https://superpeer.com/onuraslan",
       "Description": "JavaScript Developer, Web Designer",
       "ImgUrl": "https://pbs.twimg.com/profile_images/1258078540676755463/NhJ04igj.jpg",
-      "Category": "Front-end Software Development"
+      "Category": "Frontend"
     },
     {
       "Name": "Selçuk Usta",
       "Superpeer": "https://superpeer.com/selcukusta",
       "Description": "Software Development Manager, Blogger",
       "ImgUrl": "https://pbs.twimg.com/profile_images/1258078540676755463/NhJ04igj.jpg",
-      "Category": "Software Career Menthorship"
+      "Category": "Software Career Menthor"
     },
     {
       "Name": "Yigit Konur",
