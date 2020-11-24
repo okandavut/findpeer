@@ -22,8 +22,6 @@ Screenshoots :
 
 ### Technologies
 
-###### *Technologies & Libraries For Frontend*
-
 - [NextJS](https://nextjs.org/)
 - [React](https://en.reactjs.org/)
 - [Axios](https://github.com/axios/axios)
