@@ -60,8 +60,7 @@ export default function Home() {
           );
         });
         setPeerList(newList);
-      }
-      else{
+      } else {
         getPeers();
       }
     }
@@ -91,7 +90,7 @@ export default function Home() {
         </Row>
         <br />
         <Row>
-          <Col xs={3}>
+          <Col md={3} xs={6}>
             <ListGroup>
               <ListGroup.Item
                 action
@@ -124,49 +123,49 @@ export default function Home() {
                 : ""}
             </ListGroup>
           </Col>
-          <Col xs={9} style={{ display: "flex", flexDirection: "row" }}>
-            <Row>
-              {peerList
-                ? peerList.map((peer, i) => {
-                    return (
-                      <Col xs={4} key={i} style={{ marginBottom: "1rem" }}>
-                        <Card
-                          style={{
-                            width: "17rem",
-                            maxHeight: "50rem",
-                            textAlign: "center",
-                          }}
-                          key={i}
-                        >
-                          <Card.Img
-                            variant="top"
-                            src={peer.ImgUrl}
+          <Col  md={9} xs={6}  >
+            <Col>
+              <Row>
+                {peerList
+                  ? peerList.map((peer, i) => {
+                      return (
+                        <Col md={4} key={i} style={{ marginBottom: "1rem"}}>
+                          <Card
                             style={{
-                              width: "13rem",
-                              maxHeight: "50rem",
-                              margin: "1rem auto 1rem auto",
+                              width: "17rem",
                             }}
-                          />
-                          <Card.Body>
-                            <Card.Title>{peer.Name}</Card.Title>
-                            <Card.Text>
-                              {peer.Description} <br />
-                              <b>{peer.Category}</b>
-                            </Card.Text>
-                            <Button
-                              variant="primary"
-                              target="_blank"
-                              href={peer.Superpeer}
-                            >
-                              Let's Talk
-                            </Button>
-                          </Card.Body>
-                        </Card>
-                      </Col>
-                    );
-                  })
-                : ""}
-            </Row>
+                            key={i}
+                          >
+                            <Card.Img
+                              variant="top"
+                              src={peer.ImgUrl}
+                              style={{
+                                width: "13rem",
+                                maxHeight: "50rem",
+                                margin: "1rem auto 1rem auto",
+                              }}
+                            />
+                            <Card.Body>
+                              <Card.Title>{peer.Name}</Card.Title>
+                              <Card.Text>
+                                {peer.Description} <br />
+                                <b>{peer.Category}</b>
+                              </Card.Text>
+                              <Button
+                                variant="primary"
+                                target="_blank"
+                                href={peer.Superpeer}
+                              >
+                                Let's Talk
+                              </Button>
+                            </Card.Body>
+                          </Card>
+                        </Col>
+                      );
+                    })
+                  : ""}
+              </Row>
+            </Col>
           </Col>
         </Row>
       </Container>
