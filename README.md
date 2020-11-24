@@ -16,7 +16,8 @@ Find your peer is  a web application that allows you to find users on Superpeer.
 Live preview : https://findsupeer.vercel.app/
 
 Screenshoots : 
-
+![PeerList](/peerlist_page.png) <br>
+![AddPeer](/add_peer_page.png)
 
 ## Features
 
