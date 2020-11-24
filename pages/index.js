@@ -90,7 +90,7 @@ export default function Home() {
         </Row>
         <br />
         <Row>
-          <Col md={3} xs={6}>
+          <Col sm={12} md={3} style={{marginBottom:'1rem'}}>
             <ListGroup>
               <ListGroup.Item
                 action
@@ -123,19 +123,20 @@ export default function Home() {
                 : ""}
             </ListGroup>
           </Col>
-          <Col  md={9} xs={6}  >
+          <Col sm={12}  md={9} style={{ display: "flex", flexDirection: "row" }}>
             <Col>
               <Row>
                 {peerList
                   ? peerList.map((peer, i) => {
                       return (
-                        <Col md={4} key={i} style={{ marginBottom: "1rem"}}>
+                         <Col xs={12} s={6} md={6} lg={4} key={i} style={{ marginBottom: "1rem" }}>
                           <Card
-                            style={{
-                              width: "17rem",
-                            }}
-                            key={i}
-                          >
+                          style={{
+                            maxHeight: "50rem",
+                            textAlign: "center",
+                          }}
+                          key={i}
+                        >
                             <Card.Img
                               variant="top"
                               src={peer.ImgUrl}
