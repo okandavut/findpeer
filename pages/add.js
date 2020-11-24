@@ -50,22 +50,48 @@ export default function Add() {
         return element !== undefined;
       });
 
-    const res = await axios
-      .post("https://findsupeerbackend.herokuapp.com/addPeer", {
-        Name: name,
-        Superpeer: superpeer,
-        ImgUrl: imgUrl,
-        Category: categoryItem.join(),
-        Description: description,
-      })
-      .then((res) => {
-        if (res.status == 200) {
-          alert("Successfully added.");
-          location.reload();
-        }
-      });
+    console.log(name);
+    if (name == "" || !validURL(superpeer) || !validURL(imgUrl)) {
+      alert("Please fill the information");
+    }
+    if (categoryItem.length == 0) {
+      categoryItem.push("Other");
+    }
+    if (
+      name != "" &&
+      validURL(superpeer) &&
+      validURL(imgUrl) &&
+      categoryItem.length != 0
+    ) {
+      const res = await axios
+        .post("https://findsupeerbackend.herokuapp.com/addPeer", {
+          Name: name,
+          Superpeer: superpeer,
+          ImgUrl: imgUrl,
+          Category: categoryItem.join(),
+          Description: description,
+        })
+        .then((res) => {
+          if (res.status == 200) {
+            alert("Successfully added.");
+            location.reload();
+          }
+        });
+    }
   }
 
+  function validURL(str) {
+    var pattern = new RegExp(
+      "^(https?:\\/\\/)?" +
+        "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" +
+        "((\\d{1,3}\\.){3}\\d{1,3}))" +
+        "(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*" +
+        "(\\?[;&a-z\\d%_.~+=-]*)?" +
+        "(\\#[-a-z\\d_]*)?$",
+      "i"
+    );
+    return !!pattern.test(str);
+  }
   async function getCategories() {
     const res = await axios.get(
       "https://findsupeerbackend.herokuapp.com/categories"
@@ -79,12 +105,11 @@ export default function Add() {
     <>
       <Container>
         <br />
-
         <h3>Add New Peer</h3>
         <Link href={"/"}>
-         <a>Go Back Home</a>
+          <a>Go Back Home</a>
         </Link>
-        <br />  <br />
+        <br /> <br />
         <Form>
           <Form.Group controlId="exampleForm.ControlInput1">
             <Form.Label>Name Surname</Form.Label>

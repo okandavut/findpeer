@@ -27,7 +27,6 @@ export default function Home() {
     const res = await axios.get(
       "https://findsupeerbackend.herokuapp.com/categories"
     );
-    console.log(res);
     setCategories(res.data);
   }
 
