@@ -7,7 +7,7 @@
     { "Name": "Enterprise Architecture", "Id": "5" },
     { "Name": "Fintech", "Id": "6" },
     { "Name": "Mobile", "Id": "7" },
-    { "Name": "Software Career Menthor", "Id": "8" },
+    { "Name": "Software Career Mentor", "Id": "8" },
     { "Name": "Other", "Id": "9" },
     { "Name": "Frontend", "Id": "10" },
     { "Name": "Design", "Id": "11" }
