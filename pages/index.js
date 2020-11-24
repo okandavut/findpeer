@@ -9,31 +9,39 @@ import {
   ListGroup,
   Form,
 } from "react-bootstrap";
+import axios from "axios";
+import Link from "next/link";
 
 export default function Home() {
-  const [peerData, setPeerData] = useState({});
+  const [peerData, setPeerData] = useState([]);
   const [peerList, setPeerList] = useState([]);
+  const [categories, setCategories] = useState([]);
   const [searchText, setSearchText] = useState("");
 
   useEffect(() => {
     getPeers();
+    getCategories();
   }, []);
 
-  const getPeers = () => {
-    fetch(
-      "https://raw.githubusercontent.com/okandavut/find-superpeer/main/peerlist.json"
-    )
-      .then((res) => res.json())
-      .then((json) => {
-        setPeerData(json);
-        setPeerList(json.PeerList);
-      });
-  };
+  async function getCategories() {
+    const res = await axios.get(
+      "https://findsupeerbackend.herokuapp.com/categories"
+    );
+    setCategories(res.data);
+  }
+
+  async function getPeers() {
+    const res = await axios.get(
+      "https://findsupeerbackend.herokuapp.com/peers"
+    );
+    setPeerData(res.data);
+    setPeerList(res.data);
+  }
 
   const filterPeersAsCategory = (category) => {
     if (category == "clear") getPeers();
     else {
-      var newList = peerData.PeerList.filter((item) => {
+      var newList = peerData.filter((item) => {
         return item.Category.toLowerCase().includes(category.toLowerCase());
       });
       setPeerList(newList);
@@ -45,13 +53,16 @@ export default function Home() {
 
     if (code === 13 || event.button == 0) {
       if (searchText) {
-        var newList = peerData.PeerList.filter((item) => {
+        var newList = peerData.filter((item) => {
           return (
             item.Description.toLowerCase().includes(searchText.toLowerCase()) ||
             item.Name.toLowerCase().includes(searchText.toLowerCase())
           );
         });
         setPeerList(newList);
+      }
+      else{
+        getPeers();
       }
     }
   };
@@ -73,7 +84,9 @@ export default function Home() {
             />
           </Col>
           <Col xs={1}>
-            <Button variant="primary">Search</Button>
+            <Button variant="primary" onClick={enterPressed.bind(this)}>
+              Search
+            </Button>
           </Col>
         </Row>
         <br />
@@ -88,8 +101,14 @@ export default function Home() {
               >
                 Clear Filter
               </ListGroup.Item>
-              {peerData.Categories
-                ? peerData.Categories.map((category, k) => {
+              <Link href={"add"}>
+                <ListGroup.Item action>Add new Peer</ListGroup.Item>
+              </Link>
+            </ListGroup>
+            <br></br>
+            <ListGroup>
+              {categories
+                ? categories.map((category, k) => {
                     return (
                       <ListGroup.Item
                         key={k}
