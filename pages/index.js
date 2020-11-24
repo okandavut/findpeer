@@ -11,6 +11,7 @@ import {
 } from "react-bootstrap";
 import axios from "axios";
 import Link from "next/link";
+import { getCategories, getPeers } from "../api/api";
 
 export default function Home() {
   const [peerData, setPeerData] = useState([]);
@@ -19,27 +20,19 @@ export default function Home() {
   const [searchText, setSearchText] = useState("");
 
   useEffect(() => {
-    getPeers();
-    getCategories();
+    getInitialData();
+    getCategories().then((value) => setCategories(value));
   }, []);
 
-  async function getCategories() {
-    const res = await axios.get(
-      "https://findsupeerbackend.herokuapp.com/categories"
-    );
-    setCategories(res.data);
-  }
-
-  async function getPeers() {
-    const res = await axios.get(
-      "https://findsupeerbackend.herokuapp.com/peers"
-    );
-    setPeerData(res.data);
-    setPeerList(res.data);
+  function getInitialData() {
+    getPeers().then((value) => {
+      setPeerList(value);
+      setPeerData(value);
+    });
   }
 
   const filterPeersAsCategory = (category) => {
-    if (category == "clear") getPeers();
+    if (category == "clear") getInitialData();
     else {
       var newList = peerData.filter((item) => {
         return item.Category.toLowerCase().includes(category.toLowerCase());
@@ -61,7 +54,7 @@ export default function Home() {
         });
         setPeerList(newList);
       } else {
-        getPeers();
+        getInitialData();
       }
     }
   };
@@ -90,7 +83,7 @@ export default function Home() {
         </Row>
         <br />
         <Row>
-          <Col sm={12} md={3} style={{marginBottom:'1rem'}}>
+          <Col sm={12} md={3} style={{ marginBottom: "1rem" }}>
             <ListGroup>
               <ListGroup.Item
                 action
@@ -123,20 +116,27 @@ export default function Home() {
                 : ""}
             </ListGroup>
           </Col>
-          <Col sm={12}  md={9} style={{ display: "flex", flexDirection: "row" }}>
+          <Col sm={12} md={9} style={{ display: "flex", flexDirection: "row" }}>
             <Col>
               <Row>
                 {peerList
                   ? peerList.map((peer, i) => {
                       return (
-                         <Col xs={12} s={6} md={6} lg={4} key={i} style={{ marginBottom: "1rem" }}>
-                          <Card
-                          style={{
-                            maxHeight: "50rem",
-                            textAlign: "center",
-                          }}
+                        <Col
+                          xs={12}
+                          s={6}
+                          md={6}
+                          lg={4}
                           key={i}
+                          style={{ marginBottom: "1rem" }}
                         >
+                          <Card
+                            style={{
+                              maxHeight: "50rem",
+                              textAlign: "center",
+                            }}
+                            key={i}
+                          >
                             <Card.Img
                               variant="top"
                               src={peer.ImgUrl}
