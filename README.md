@@ -63,6 +63,7 @@ If there's anything you'd like to chat about, please feel free send me dm on [Tw
 <table>
   <tr>
     <td align="center"><a href="https://medium.com/@okandavut"><img src="https://avatars3.githubusercontent.com/u/10600157?v=4" width="100px;" alt=""/><br /><sub><b>Okan DAVUT</b></sub></a><br /><a href="#infra-okandavut" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="https://github.com/okandavut/find-superpeer/commits?author=okandavut" title="Tests">⚠️</a> <a href="https://github.com/okandavut/find-superpeer/commits?author=okandavut" title="Code">💻</a></td>
+      <td align="center"><a href="http://furkan.work/"><img src="https://avatars0.githubusercontent.com/u/23284813?s=460&u=6b583d663061824cd2f75543e2b47f8b8aaa9185&v=4" width="100px;" alt=""/><br /><sub><b>Furkan Topaloğlu</b></sub></a><br /><a href="https://github.com/okandavut/find-superpeer/commits?author=frkntplglu" title="Code">💻</a></td>
   </tr>
 </table>
 
