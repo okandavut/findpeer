@@ -10,6 +10,7 @@ import {
   Form,
 } from "react-bootstrap";
 import axios from "axios";
+import Link from "next/link";
 
 export default function Home() {
   const [peerData, setPeerData] = useState([]);
@@ -23,14 +24,17 @@ export default function Home() {
   }, []);
 
   async function getCategories() {
-    const res = await axios.get("https://findsupeerbackend.herokuapp.com/categories");
+    const res = await axios.get(
+      "https://findsupeerbackend.herokuapp.com/categories"
+    );
     console.log(res);
     setCategories(res.data);
   }
 
   async function getPeers() {
-    const res = await axios.get("https://findsupeerbackend.herokuapp.com/peers");
-    console.log(res);
+    const res = await axios.get(
+      "https://findsupeerbackend.herokuapp.com/peers"
+    );
     setPeerData(res.data);
     setPeerList(res.data);
   }
@@ -58,6 +62,9 @@ export default function Home() {
         });
         setPeerList(newList);
       }
+      else{
+        getPeers();
+      }
     }
   };
 
@@ -78,7 +85,9 @@ export default function Home() {
             />
           </Col>
           <Col xs={1}>
-            <Button variant="primary" onClick={enterPressed.bind(this)}>Search</Button>
+            <Button variant="primary" onClick={enterPressed.bind(this)}>
+              Search
+            </Button>
           </Col>
         </Row>
         <br />
@@ -93,20 +102,26 @@ export default function Home() {
               >
                 Clear Filter
               </ListGroup.Item>
+              <Link href={"add"}>
+                <ListGroup.Item action>Add new Peer</ListGroup.Item>
+              </Link>
+            </ListGroup>
+            <br></br>
+            <ListGroup>
               {categories
                 ? categories.map((category, k) => {
-                  return (
-                    <ListGroup.Item
-                      key={k}
-                      action
-                      onClick={(e) => {
-                        filterPeersAsCategory(category.Name);
-                      }}
-                    >
-                      {category.Name}
-                    </ListGroup.Item>
-                  );
-                })
+                    return (
+                      <ListGroup.Item
+                        key={k}
+                        action
+                        onClick={(e) => {
+                          filterPeersAsCategory(category.Name);
+                        }}
+                      >
+                        {category.Name}
+                      </ListGroup.Item>
+                    );
+                  })
                 : ""}
             </ListGroup>
           </Col>
@@ -114,43 +129,43 @@ export default function Home() {
             <Row>
               {peerList
                 ? peerList.map((peer, i) => {
-                  return (
-                    <Col xs={4} key={i} style={{ marginBottom: "1rem" }}>
-                      <Card
-                        style={{
-                          width: "17rem",
-                          maxHeight: "50rem",
-                          textAlign: "center",
-                        }}
-                        key={i}
-                      >
-                        <Card.Img
-                          variant="top"
-                          src={peer.ImgUrl}
+                    return (
+                      <Col xs={4} key={i} style={{ marginBottom: "1rem" }}>
+                        <Card
                           style={{
-                            width: "13rem",
+                            width: "17rem",
                             maxHeight: "50rem",
-                            margin: "1rem auto 1rem auto",
+                            textAlign: "center",
                           }}
-                        />
-                        <Card.Body>
-                          <Card.Title>{peer.Name}</Card.Title>
-                          <Card.Text>
-                            {peer.Description} <br />
-                            <b>{peer.Category}</b>
-                          </Card.Text>
-                          <Button
-                            variant="primary"
-                            target="_blank"
-                            href={peer.Superpeer}
-                          >
-                            Let's Talk
+                          key={i}
+                        >
+                          <Card.Img
+                            variant="top"
+                            src={peer.ImgUrl}
+                            style={{
+                              width: "13rem",
+                              maxHeight: "50rem",
+                              margin: "1rem auto 1rem auto",
+                            }}
+                          />
+                          <Card.Body>
+                            <Card.Title>{peer.Name}</Card.Title>
+                            <Card.Text>
+                              {peer.Description} <br />
+                              <b>{peer.Category}</b>
+                            </Card.Text>
+                            <Button
+                              variant="primary"
+                              target="_blank"
+                              href={peer.Superpeer}
+                            >
+                              Let's Talk
                             </Button>
-                        </Card.Body>
-                      </Card>
-                    </Col>
-                  );
-                })
+                          </Card.Body>
+                        </Card>
+                      </Col>
+                    );
+                  })
                 : ""}
             </Row>
           </Col>
