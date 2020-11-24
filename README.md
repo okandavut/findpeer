@@ -1,25 +1,18 @@
-<h2 align="center"> Find your peer </h2> 
+<h1 align="center">Find Your Peer 👋</h1>
 
-## Table of Contents
-
-- [Introduction](#introduction)
-- [Features](#features)
-- [Technologies](#technologies)
-- [Feedback](#feedback)
-- [Build Process](#build-process)
-- [Contributors](#contributors)
+ <b> Find your peer is  a web application that allows you to find users on Superpeer. <br>
+ </b>
 
 
-## Introduction
+### Preview & Screenshoots
 
-Find your peer is  a web application that allows you to find users on Superpeer. <br>
 Live preview : https://findsupeer.vercel.app/
 
 Screenshoots : 
 ![PeerList](/peerlist_page.png) <br>
 ![AddPeer](/add_peer_page.png)
 
-## Features
+### Features
 
 - Find people on Superpeer 
     - Filter by category
@@ -27,7 +20,7 @@ Screenshoots :
 - Add new peer
     - You can add yourself or another people to system
 
-## Technologies
+### Technologies
 
 ###### *Technologies & Libraries For Frontend*
 
@@ -44,13 +37,13 @@ Screenshoots :
 - [Cors](https://www.npmjs.com/package/cors)
 
 
-## Feedback
+### Feedback
 
 Feel free to send me feedback on [Twitter](https://twitter.com/okandavutcom) or [file an issue](https://github.com/okandavut/find-superpeer/issues/new). Feature requests are always welcome. If you wish to contribute, please go ahead and open PR.
 
 If there's anything you'd like to chat about, please feel free send me dm on [Twitter](https://twitter.com/okandavutcom)!
 
-## Contributors
+### Contributors
 
 
 <!-- markdownlint-enable -->
@@ -71,13 +64,8 @@ If there's anything you'd like to chat about, please feel free send me dm on [Tw
 <!-- prettier-ignore-end -->
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
-## LICENSE
+### LICENSE
 [MIT](LICENSE)
 
-
-
-
-
-
-## Note
+### Note
 The data used in the project is taken from the awesome-superpeer (https://github.com/suadev/awesome-superpeer) repository. Thanks to Suat Köse :)
