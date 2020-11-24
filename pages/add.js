@@ -1,4 +1,3 @@
-import Head from "next/head";
 import { useEffect, useState } from "react";
 import {
   Card,
@@ -9,8 +8,9 @@ import {
   ListGroup,
   Form,
 } from "react-bootstrap";
-import axios from "axios";
 import Link from "next/link";
+import validURL from "../utils/urlchecker";
+import { getCategories } from "../api/api";
 
 export default function Add() {
   const [name, setName] = useState("");
@@ -18,29 +18,28 @@ export default function Add() {
   const [imgUrl, setImgUrl] = useState("");
   const [category, setCategory] = useState("");
   const [description, setDescription] = useState("");
-
   const [categories, setCategories] = useState([]);
-  const [hobbies, setHobbies] = useState([]);
+  const [checkedCategories, setCheckedCategories] = useState([]);
 
   useEffect(() => {
-    getCategories();
+    getCategories().then((value) => setCategories(value));
   }, []);
 
-  var handleInputChange = (event) => {
+  var handleCheckCategory = (event) => {
     const target = event.target;
     var value = target.value;
 
     if (target.checked) {
-      hobbies[value] = value;
+      checkedCategories[value] = value;
     } else {
-      hobbies.splice(value, 1);
+      checkedCategories.splice(value, 1);
     }
   };
 
   async function addNewPeer() {
     var categoryItem = categories
       .map((item, i) => {
-        if (hobbies[item.Name] == item.Name) {
+        if (checkedCategories[item.Name] == item.Name) {
           return item.Name;
         } else {
           return undefined;
@@ -50,7 +49,6 @@ export default function Add() {
         return element !== undefined;
       });
 
-    console.log(name);
     if (name == "" || !validURL(superpeer) || !validURL(imgUrl)) {
       alert("Please fill the information");
     }
@@ -78,27 +76,6 @@ export default function Add() {
           }
         });
     }
-  }
-
-  function validURL(str) {
-    var pattern = new RegExp(
-      "^(https?:\\/\\/)?" +
-        "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" +
-        "((\\d{1,3}\\.){3}\\d{1,3}))" +
-        "(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*" +
-        "(\\?[;&a-z\\d%_.~+=-]*)?" +
-        "(\\#[-a-z\\d_]*)?$",
-      "i"
-    );
-    return !!pattern.test(str);
-  }
-  async function getCategories() {
-    const res = await axios.get(
-      "https://findsupeerbackend.herokuapp.com/categories"
-    );
-
-    console.log(res);
-    setCategories(res.data);
   }
 
   return (
@@ -146,13 +123,13 @@ export default function Add() {
           </Form.Group>
           <Form.Group controlId="exampleForm.ControlSelect2">
             <Form.Label>
-              Select your category (multiselect) (if you want to add new please{" "}
+              Select your category (multiselect) (if you want to add new please
               <a href="https://github.com/okandavut/find-superpeer/issues/new">
                 send issue
               </a>
               )
             </Form.Label>
-            {categories
+            {categories && categories.length > 0
               ? categories.map((category, k) => {
                   return (
                     <Form.Check
@@ -160,7 +137,7 @@ export default function Add() {
                       type="checkbox"
                       label={category.Name}
                       value={category.Name}
-                      onChange={handleInputChange.bind(this)}
+                      onChange={handleCheckCategory.bind(this)}
                     />
                   );
                 })
