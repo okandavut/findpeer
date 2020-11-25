@@ -25,9 +25,9 @@ export default function Add() {
     getCategories().then((value) => setCategories(value));
   }, []);
 
-  var handleCheckCategory = (event) => {
-    const target = event.target;
-    var value = target.value;
+  const handleCheckCategory = (event) => {
+    const { target } = event;
+    const { value } = target;
 
     if (target.checked) {
       checkedCategories[value] = value;
@@ -129,19 +129,20 @@ export default function Add() {
               </a>
               )
             </Form.Label>
-            {categories && categories.length > 0
-              ? categories.map((category, k) => {
-                  return (
-                    <Form.Check
-                      key={k}
-                      type="checkbox"
-                      label={category.Name}
-                      value={category.Name}
-                      onChange={handleCheckCategory.bind(this)}
-                    />
-                  );
-                })
-              : ""}
+            {categories && categories.length > 0 &&
+              categories.map((category, k) => {
+                return (
+                  <Form.Check
+                    key={k}
+                    type="checkbox"
+                    label={category.Name}
+                    value={category.Name}
+                    id={category.Id}
+                    onChange={handleCheckCategory}
+                  />
+                );
+              })
+            }
           </Form.Group>
           <Form.Group controlId="exampleForm.ControlSelect2">
             <Button variant="primary" onClick={addNewPeer}>
