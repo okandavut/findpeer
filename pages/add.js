@@ -11,6 +11,8 @@ import {
 import Link from "next/link";
 import validURL from "../utils/urlchecker";
 import { getCategories } from "../api/api";
+import axios from "axios";
+
 
 export default function Add() {
   const [name, setName] = useState("");
@@ -49,7 +51,7 @@ export default function Add() {
         return element !== undefined;
       });
 
-    if (name == "" || !validURL(superpeer) || !validURL(imgUrl)) {
+    if (name == "" || superpeer == "") {
       alert("Please fill the information");
     }
     if (categoryItem.length == 0) {
@@ -57,8 +59,7 @@ export default function Add() {
     }
     if (
       name != "" &&
-      validURL(superpeer) &&
-      validURL(imgUrl) &&
+      superpeer != "" &&
       categoryItem.length != 0
     ) {
       const res = await axios
@@ -97,10 +98,10 @@ export default function Add() {
             />
           </Form.Group>
           <Form.Group controlId="exampleForm.ControlInput1">
-            <Form.Label>Superpeer URL</Form.Label>
+            <Form.Label>Superpeer Username</Form.Label>
             <Form.Control
               type="text"
-              placeholder="Superpeer"
+              placeholder="Superpeer username"
               onChange={(e) => setSuperpeer(e.target.value)}
             />
           </Form.Group>
@@ -131,16 +132,16 @@ export default function Add() {
             </Form.Label>
             {categories && categories.length > 0
               ? categories.map((category, k) => {
-                  return (
-                    <Form.Check
-                      key={k}
-                      type="checkbox"
-                      label={category.Name}
-                      value={category.Name}
-                      onChange={handleCheckCategory.bind(this)}
-                    />
-                  );
-                })
+                return (
+                  <Form.Check
+                    key={k}
+                    type="checkbox"
+                    label={category.Name}
+                    value={category.Name}
+                    onChange={handleCheckCategory.bind(this)}
+                  />
+                );
+              })
               : ""}
           </Form.Group>
           <Form.Group controlId="exampleForm.ControlSelect2">
