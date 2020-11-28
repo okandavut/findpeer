@@ -1,0 +1,12 @@
+.filter-column {
+  margin-top: 108px;
+}
+
+@media screen and (max-width: 768px) {
+  .filter-column {
+    margin-top: 1em !important;
+  }
+  .add-button {
+    margin-top: 1em !important;
+  }
+}

@@ -1,5 +1,4 @@
-import Head from "next/head";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import {
   Card,
   Button,
@@ -9,166 +8,183 @@ import {
   ListGroup,
   Form,
 } from "react-bootstrap";
-import axios from "axios";
+import { List } from "react-content-loader";
 import Link from "next/link";
 import { getCategories, getPeers } from "../api/api";
 
 export default function Home() {
-  const [peerData, setPeerData] = useState([]);
+  const [filteredPeerList, setFilteredPeerList] = useState(null);
   const [peerList, setPeerList] = useState([]);
   const [categories, setCategories] = useState([]);
-  const [searchText, setSearchText] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("");
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    getInitialData();
-    getCategories().then((value) => setCategories(value));
+    setLoading(true);
+    Promise.all([getCategories(), getPeers()]).then((results) => {
+      setCategories(results[0]);
+      setPeerList(results[1]);
+      setLoading(false);
+    });
   }, []);
 
-  function getInitialData() {
-    getPeers().then((value) => {
-      setPeerList(value);
-      setPeerData(value);
-    });
-  }
-
   const filterPeersAsCategory = (category) => {
-    if (category == "clear") getInitialData();
+    if (category == "clear") setFilteredPeerList(null);
     else {
-      var newList = peerData.filter((item) => {
+      const newList = peerList.filter((item) => {
         return item.Category.toLowerCase().includes(category.toLowerCase());
       });
-      setPeerList(newList);
+      setFilteredPeerList(newList);
     }
   };
 
-  const enterPressed = () => {
-    let code = event.keyCode || event.which;
-
-    if (code === 13 || event.button == 0) {
-      if (searchText) {
-        var newList = peerData.filter((item) => {
-          return (
-            item.Description.toLowerCase().includes(searchText.toLowerCase()) ||
-            item.Name.toLowerCase().includes(searchText.toLowerCase())
-          );
-        });
-        setPeerList(newList);
-      } else {
-        getInitialData();
-      }
+  const handleChange = (e) => {
+    const { value } = e.target;
+    if (value) {
+      setSelectedCategory("");
+      const newList = peerList.filter((item) => {
+        return (
+          item.Description.toLocaleLowerCase().includes(
+            value.toLocaleLowerCase()
+          ) || item.Name.toLocaleLowerCase().includes(value.toLocaleLowerCase())
+        );
+      });
+      setFilteredPeerList(newList);
+    } else {
+      setFilteredPeerList(null);
     }
   };
+
+  const GetPeerList = () => {
+    if (filteredPeerList) {
+      return filteredPeerList;
+    }
+
+    return peerList;
+  };
+
+  const sortByName = (a, b) => a.Name !== 'Other' && a.Name.localeCompare(b.Name);
 
   return (
     <>
       <Container>
-        <br />
-
-        <h3>Find Your Peer</h3>
-        <br />
-        <Row>
-          <Col xs={7}>
-            <Form.Control
-              type="text"
-              placeholder="Search with Name or Description"
-              onChange={(e) => setSearchText(e.target.value)}
-              onKeyPress={enterPressed.bind(this)}
-            />
-          </Col>
-          <Col xs={1}>
-            <Button variant="primary" onClick={enterPressed.bind(this)}>
-              Search
-            </Button>
-          </Col>
-        </Row>
-        <br />
-        <Row>
-          <Col sm={12} md={3} style={{ marginBottom: "1rem" }}>
-            <ListGroup>
-              <ListGroup.Item
-                action
-                onClick={(e) => {
-                  filterPeersAsCategory("clear");
-                }}
-              >
-                Clear Filter
-              </ListGroup.Item>
-              <Link href={"add"}>
-                <ListGroup.Item action>Add new Peer</ListGroup.Item>
-              </Link>
-            </ListGroup>
-            <br></br>
-            <ListGroup>
-              {categories
-                ? categories.map((category, k) => {
-                    return (
-                      <ListGroup.Item
-                        key={k}
-                        action
-                        onClick={(e) => {
-                          filterPeersAsCategory(category.Name);
-                        }}
-                      >
-                        {category.Name}
-                      </ListGroup.Item>
-                    );
-                  })
-                : ""}
-            </ListGroup>
-          </Col>
-          <Col sm={12} md={9} style={{ display: "flex", flexDirection: "row" }}>
-            <Col>
-              <Row>
-                {peerList
-                  ? peerList.map((peer, i) => {
-                      return (
-                        <Col
-                          xs={12}
-                          s={6}
-                          md={6}
-                          lg={4}
-                          key={i}
-                          style={{ marginBottom: "1rem" }}
-                        >
-                          <Card
-                            style={{
-                              maxHeight: "50rem",
-                              textAlign: "center",
+        {loading ? (
+          <List style={{ marginTop: "21px" }} />
+        ) : (
+          <>
+            <h3 style={{ marginTop: "21px" }}>Find Your Peer</h3>
+            <hr/>
+            <Row>
+              <Col className={"filter-column"} sm={12} md={3}>
+                <ListGroup>
+                  <ListGroup.Item
+                    action
+                    onClick={(e) => {
+                      filterPeersAsCategory("clear");
+                      setSelectedCategory("");
+                    }}
+                  >
+                    Clear Category Filter
+                  </ListGroup.Item>
+                </ListGroup>
+                <ListGroup className={"mt-4"}>
+                  {categories
+                    ? categories.sort(sortByName).map((category, k) => {
+                        return (
+                          <ListGroup.Item
+                            key={k}
+                            active={category.Name === selectedCategory}
+                            action
+                            onClick={(e) => {
+                              setSelectedCategory(category.Name);
+                              filterPeersAsCategory(category.Name);
                             }}
-                            key={i}
                           >
-                            <Card.Img
-                              variant="top"
-                              src={peer.ImgUrl}
-                              style={{
-                                width: "13rem",
-                                maxHeight: "50rem",
-                                margin: "1rem auto 1rem auto",
-                              }}
-                            />
-                            <Card.Body>
-                              <Card.Title>{peer.Name}</Card.Title>
-                              <Card.Text>
-                                {peer.Description} <br />
-                                <b>{peer.Category}</b>
-                              </Card.Text>
-                              <Button
-                                variant="primary"
-                                target="_blank"
-                                href={peer.Superpeer}
+                            {category.Name}
+                          </ListGroup.Item>
+                        );
+                      })
+                    : null}
+                </ListGroup>
+              </Col>
+              <Col
+                sm={12}
+                md={9}
+                style={{ display: "flex", flexDirection: "row" }}
+              >
+                <Col className={"add-button"}>
+                  <Row
+                    style={{ justifyContent: "flex-end", padding: "0 15px" }}
+                  >
+                    <Link href={"add"}>
+                      <Button variant="success">Add new Peer</Button>
+                    </Link>
+                  </Row>
+                  <Row
+                    style={{ justifyContent: "flex-end" }}
+                    className={"mt-3"}
+                  >
+                    <Col lg={6} md={8} sm={24}>
+                      <Form.Control
+                        type="text"
+                        placeholder="Search with Name or Description"
+                        onChange={handleChange}
+                      />
+                    </Col>
+                  </Row>
+                  <Row className={"mt-3"}>
+                    {GetPeerList()
+                      ? GetPeerList().map((peer, i) => {
+                          return (
+                            <Col
+                              xs={12}
+                              s={6}
+                              md={6}
+                              lg={4}
+                              key={i}
+                              className={"mb-2"}
+                            >
+                              <Card
+                                style={{
+                                  maxHeight: "50rem",
+                                  textAlign: "center",
+                                }}
+                                key={i}
                               >
-                                Let's Talk
-                              </Button>
-                            </Card.Body>
-                          </Card>
-                        </Col>
-                      );
-                    })
-                  : ""}
-              </Row>
-            </Col>
-          </Col>
-        </Row>
+                                <Card.Img
+                                  variant="top"
+                                  src={peer.ImgUrl}
+                                  style={{
+                                    width: "13rem",
+                                    maxHeight: "50rem",
+                                    margin: "1rem auto 1rem auto",
+                                  }}
+                                />
+                                <Card.Body>
+                                  <Card.Title>{peer.Name}</Card.Title>
+                                  <Card.Text>{peer.Description}</Card.Text>
+                                  <Card.Text>
+                                    <b>{peer.Category}</b>
+                                  </Card.Text>
+                                  <Button
+                                    variant="primary"
+                                    target="_blank"
+                                    href={peer.Superpeer}
+                                  >
+                                    Let's Talk
+                                  </Button>
+                                </Card.Body>
+                              </Card>
+                            </Col>
+                          );
+                        })
+                      : null}
+                  </Row>
+                </Col>
+              </Col>
+            </Row>
+          </>
+        )}
       </Container>
     </>
   );
