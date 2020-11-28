@@ -1,155 +1,137 @@
-import { useEffect, useState } from "react";
-import { Button, Container, Row, Col, ListGroup, Form } from "react-bootstrap";
+import { Button, Container, Row, Col } from "react-bootstrap";
+import { List } from "react-content-loader";
 import Link from "next/link";
 import { getCategories, getPeers } from "../api/api";
 import Peers from "../components/peers";
+import SearchInput from "../components/searchInput";
+import FilterColumn from "../components/filterColumn";
+import { useEffect, useState } from "react";
 import Pagination from "../components/pagination";
-import Categories from "../components/categories";
+import { useMediaQuery } from "react-responsive";
 
-const Home = () => {
-  const [peerData, setPeerData] = useState([]);
+export default function Home() {
+  const [filteredPeerList, setFilteredPeerList] = useState(null);
   const [peerList, setPeerList] = useState([]);
   const [categories, setCategories] = useState([]);
-  const [searchText, setSearchText] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("");
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [isMobile, setIsMobile] = useState(false);
-  const [postsPerPage] = useState(9);
+  const postsPerPage = 9;
+  const hiddenTabletOrMobile = useMediaQuery({
+    query: "(min-device-width: 992px)",
+  });
 
-  var currentPosts = setNewPeerList(peerList);
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
 
   useEffect(() => {
-    if (window.innerWidth <= 760) setIsMobile(true);
-    getInitialData();
-    getCategories().then((value) => setCategories(value));
+    setLoading(true);
+    Promise.all([getCategories(), getPeers()]).then((results) => {
+      setCategories(results[0]);
+      setPeerList(results[1]);
+      setLoading(false);
+    });
   }, []);
 
-  function getInitialData() {
-    setLoading(true);
-    getPeers().then((value) => {
-      setPeerList(value);
-      setPeerData(value);
-    });
-    currentPosts = setNewPeerList(peerList);
-    setLoading(false);
-  }
-
   const filterPeersAsCategory = (category) => {
-    if (category == "clear") getInitialData();
+    if (category == "clear") setFilteredPeerList(null);
     else {
-      var newList = peerData.filter((item) => {
+      const newList = peerList.filter((item) => {
         return item.Category.toLowerCase().includes(category.toLowerCase());
       });
-      setPeerList(newList);
-      currentPosts = setNewPeerList(newList);
+      setFilteredPeerList(newList);
+      setCurrentPage(1);
     }
   };
 
-  function setNewPeerList(list) {
+  const handleChange = (e) => {
+    const { value } = e.target;
+    if (value) {
+      setSelectedCategory("");
+      const newList = peerList.filter((item) => {
+        return (
+          item.Category.toLocaleLowerCase().includes(
+            value.toLocaleLowerCase()
+          ) ||
+          item.Description.toLocaleLowerCase().includes(
+            value.toLocaleLowerCase()
+          ) ||
+          item.Name.toLocaleLowerCase().includes(value.toLocaleLowerCase())
+        );
+      });
+      setFilteredPeerList(newList);
+      setCurrentPage(1);
+    } else {
+      setFilteredPeerList(null);
+    }
+  };
+
+  const getList = () => {
+    if (filteredPeerList) {
+      return filteredPeerList;
+    }
+
+    return peerList;
+  };
+
+  const getPeerList = (list) => {
     const indexOfLastPost = currentPage * postsPerPage;
     const indexOfFirstPost = indexOfLastPost - postsPerPage;
-    if (indexOfFirstPost == indexOfLastPost) return list;
-    if (!isMobile) return list.slice(indexOfFirstPost, indexOfLastPost);
-    else return list;
-  }
 
-  const enterPressed = () => {
-    let code = event.keyCode || event.which;
-
-    if (code === 13 || event.button == 0) {
-      if (searchText) {
-        var newList = peerData.filter((item) => {
-          return (
-            item.Description.toLowerCase().includes(searchText.toLowerCase()) ||
-            item.Name.toLowerCase().includes(searchText.toLowerCase()) ||
-            item.Category.toLowerCase().includes(searchText.toLowerCase())
-          );
-        });
-        setPeerList(newList);
-        currentPosts = setNewPeerList(newList);
-      } else {
-        getInitialData();
+    if (!hiddenTabletOrMobile || indexOfFirstPost == indexOfLastPost) {
+      if (!hiddenTabletOrMobile && selectedCategory !== "clear") {
+        setSelectedCategory("clear");
+        filterPeersAsCategory("clear");
       }
+      return list;
     }
+    return list.slice(indexOfFirstPost, indexOfLastPost);
   };
 
   return (
     <>
       <Container>
-        <br />
-        <h3>Find Your Peer</h3>
-        <br />
-        <Row>
-          <Col xs={7}>
-            <Form.Control
-              type="text"
-              placeholder="Search Anything"
-              onChange={(e) => setSearchText(e.target.value)}
-              onKeyPress={enterPressed.bind(this)}
-            />
-          </Col>
-          <Col xs={1}>
-            <Button variant="primary" onClick={enterPressed.bind(this)}>
-              Search
-            </Button>
-          </Col>
-        </Row>
-        <br />
-        {!isMobile ? (
-          <Row>
-            <Col xs={1}>
-              <Pagination
-                postsPerPage={postsPerPage}
-                totalPosts={peerList.length}
-                paginate={paginate}
-              />
-            </Col>
-          </Row>
+        {loading ? (
+          <List style={{ marginTop: "21px" }} />
         ) : (
-          ""
+          <>
+            <h3 style={{ marginTop: "21px" }}>Find Your Peer</h3>
+            <hr />
+            <Row>
+              <FilterColumn
+                categories={categories}
+                filterPeersAsCategory={filterPeersAsCategory}
+                setSelectedCategory={setSelectedCategory}
+                selectedCategory={selectedCategory}
+              />
+              <Col
+                sm={12}
+                md={9}
+                style={{ display: "flex", flexDirection: "row" }}
+              >
+                <Col className={"right-column"}>
+                  <Row
+                    style={{ justifyContent: "flex-end", padding: "0 15px" }}
+                  >
+                    <Link href={"add"}>
+                      <Button variant="success">Add new Peer</Button>
+                    </Link>
+                  </Row>
+                  <SearchInput handleChange={handleChange} />
+                  <Pagination
+                    postsPerPage={postsPerPage}
+                    totalPosts={getList().length}
+                    paginate={paginate}
+                    currentPage={currentPage}
+                  />
+                  <Peers peers={getPeerList(getList())} />
+                </Col>
+              </Col>
+            </Row>
+          </>
         )}
-
-        <Row>
-          {!isMobile ? (
-            <Col sm={12} md={3} style={{ marginBottom: "1rem" }}>
-              <ListGroup>
-                <ListGroup.Item
-                  action
-                  onClick={(e) => {
-                    filterPeersAsCategory("clear");
-                  }}
-                >
-                  Clear Filter
-                </ListGroup.Item>
-                <Link href={"add"}>
-                  <ListGroup.Item action>Add new Peer</ListGroup.Item>
-                </Link>
-              </ListGroup>
-              <br></br>
-              <ListGroup>
-                <Categories
-                  categories={categories}
-                  filterPeersAsCategory={filterPeersAsCategory}
-                />
-              </ListGroup>
-            </Col>
-          ) : (
-            ""
-          )}
-          <Col sm={12} md={9} style={{ display: "flex", flexDirection: "row" }}>
-            <Col>
-              <Row>
-                <Peers peers={currentPosts} loading={loading} />
-              </Row>
-            </Col>
-          </Col>
-        </Row>
       </Container>
     </>
   );
-};
-
-export default Home;
+}

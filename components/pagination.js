@@ -1,26 +1,34 @@
 import React from "react";
+import { Col, Pagination as BPagination, Row } from "react-bootstrap";
+const Pagination = ({ postsPerPage, totalPosts, paginate, currentPage }) => {
+  const getItems = () => {
+    const items = [];
+    for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
+      items.push(i);
+    }
 
-const Pagination = ({ postsPerPage, totalPosts, paginate }) => {
-  const pageNumbers = [];
-
-  for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
-    pageNumbers.push(i);
-  }
+    return items;
+  };
 
   return (
-    <React.Fragment>
-      <nav>
-        <ul className="pagination">
-          {pageNumbers.map((number) => (
-            <li key={number} className="page-item">
-              <a onClick={() => paginate(number)} className="page-link">
-                {number}
-              </a>
-            </li>
+    <Row
+      style={{ justifyContent: "flex-end", padding: "0 15px" }}
+      className={"mt-3 hidden-lg"}
+    >
+      <Col md={24}>
+        <BPagination size={"sm"}>
+          {getItems().map((item) => (
+            <BPagination.Item
+              key={item}
+              onClick={() => paginate(item)}
+              active={item === currentPage}
+            >
+              {item}
+            </BPagination.Item>
           ))}
-        </ul>
-      </nav>
-    </React.Fragment>
+        </BPagination>
+      </Col>
+    </Row>
   );
 };
 
