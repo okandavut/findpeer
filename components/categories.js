@@ -1,4 +1,4 @@
-import { ListGroup } from 'react-bootstrap';
+import { ListGroup } from "react-bootstrap";
 
 const Categories = ({ categories, filterPeersAsCategory, setCurrentPage }) => {
   return (
@@ -18,7 +18,7 @@ const Categories = ({ categories, filterPeersAsCategory, setCurrentPage }) => {
               </ListGroup.Item>
             );
           })
-        : ''}
+        : ""}
     </>
   );
 };
