@@ -10,16 +10,13 @@ const Home = () => {
   const [peerData, setPeerData] = useState([]);
   const [peerList, setPeerList] = useState([]);
   const [categories, setCategories] = useState([]);
-  // const [currentPosts, setCurrentPosts] = useState([]);
   const [searchText, setSearchText] = useState("");
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [isMobile, setIsMobile] = useState(false);
   const [postsPerPage] = useState(9);
 
-  //Get Current Posts
   var currentPosts = setNewPeerList(peerList);
-  //Chnage method
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
