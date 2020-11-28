@@ -51,7 +51,7 @@ If there's anything you'd like to chat about, please feel free send me dm on [Tw
    <td align="center"><a href="https://isagul.now.sh//"><img src="https://avatars2.githubusercontent.com/u/16213088?s=460&u=d2cbbe382059e8b5cd6b163bafa9fa1401d3fb59&v=4" width="100px;" alt=""/><br /><sub><b>İsa Gül</b></sub></a><br /><a href="https://github.com/okandavut/find-superpeer/commits?author=huseyingoztok" title="Code">💻</a></td>
       <td align="center"><a href="https://www.linkedin.com/in/huseyingoztok"><img src="https://avatars1.githubusercontent.com/u/43777036?s=460&v=4" width="100px;" alt=""/><br /><sub><b>Huseyin Goztok</b></sub></a><br /><a href="https://github.com/okandavut/find-superpeer/commits?author=huseyingoztok" title="Code">💻</a>
    
-   </td><td align="center"><a href="alihanyilmaz.com"><img src="https://avatars2.githubusercontent.com/u/52474117?s=460&u=c0e1715c615822266b26bfea146232a4fd74dbe5&v=4" width="100px;" alt=""/><br /><sub><b>Alihan Yılmaz</b></sub></a><br /><a href="https://github.com/okandavut/find-superpeer/commits?author=alihan" title="Code">💻</a></td>
+   </td><td align="center"><a href="https://alihanyilmaz.com/"><img src="https://avatars2.githubusercontent.com/u/52474117?s=460&u=c0e1715c615822266b26bfea146232a4fd74dbe5&v=4" width="100px;" alt=""/><br /><sub><b>Alihan Yılmaz</b></sub></a><br /><a href="https://github.com/okandavut/find-superpeer/commits?author=alihan" title="Code">💻</a></td>
   </tr>
  
 </table>
