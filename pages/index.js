@@ -133,6 +133,7 @@ const Home = () => {
                 <Categories
                   categories={categories}
                   filterPeersAsCategory={filterPeersAsCategory}
+                  setCurrentPage={setCurrentPage}
                 />
               </ListGroup>
             </Col>

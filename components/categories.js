@@ -1,6 +1,6 @@
-import { ListGroup } from "react-bootstrap";
+import { ListGroup } from 'react-bootstrap';
 
-const Categories = ({ categories, filterPeersAsCategory }) => {
+const Categories = ({ categories, filterPeersAsCategory, setCurrentPage }) => {
   return (
     <>
       {categories
@@ -11,13 +11,14 @@ const Categories = ({ categories, filterPeersAsCategory }) => {
                 action
                 onClick={(e) => {
                   filterPeersAsCategory(category.Name);
+                  setCurrentPage(1);
                 }}
               >
                 {category.Name}
               </ListGroup.Item>
             );
           })
-        : ""}
+        : ''}
     </>
   );
 };
