@@ -52,7 +52,8 @@ const Home = () => {
     const indexOfLastPost = currentPage * postsPerPage;
     const indexOfFirstPost = indexOfLastPost - postsPerPage;
     if (indexOfFirstPost == indexOfLastPost) return list;
-    return list.slice(indexOfFirstPost, indexOfLastPost);
+    if (!isMobile) return list.slice(indexOfFirstPost, indexOfLastPost);
+    else return list;
   }
 
   const enterPressed = () => {
