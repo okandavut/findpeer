@@ -1,15 +1,5 @@
-import Head from "next/head";
 import { useEffect, useState } from "react";
-import {
-  Card,
-  Button,
-  Container,
-  Row,
-  Col,
-  ListGroup,
-  Form,
-} from "react-bootstrap";
-import axios from "axios";
+import { Button, Container, Row, Col, ListGroup, Form } from "react-bootstrap";
 import Link from "next/link";
 import { getCategories, getPeers } from "../api/api";
 import Peers from "../components/peers";
@@ -24,6 +14,7 @@ const Home = () => {
   const [searchText, setSearchText] = useState("");
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
+  const [isMobile, setIsMobile] = useState(false);
   const [postsPerPage] = useState(9);
 
   //Get Current Posts
@@ -34,6 +25,7 @@ const Home = () => {
   };
 
   useEffect(() => {
+    if (window.innerWidth <= 760) setIsMobile(true);
     getInitialData();
     getCategories().then((value) => setCategories(value));
   }, []);
@@ -74,7 +66,8 @@ const Home = () => {
         var newList = peerData.filter((item) => {
           return (
             item.Description.toLowerCase().includes(searchText.toLowerCase()) ||
-            item.Name.toLowerCase().includes(searchText.toLowerCase())
+            item.Name.toLowerCase().includes(searchText.toLowerCase()) ||
+            item.Category.toLowerCase().includes(searchText.toLowerCase())
           );
         });
         setPeerList(newList);
@@ -89,14 +82,13 @@ const Home = () => {
     <>
       <Container>
         <br />
-
         <h3>Find Your Peer</h3>
         <br />
         <Row>
           <Col xs={7}>
             <Form.Control
               type="text"
-              placeholder="Search with Name or Description"
+              placeholder="Search Anything"
               onChange={(e) => setSearchText(e.target.value)}
               onKeyPress={enterPressed.bind(this)}
             />
@@ -108,38 +100,47 @@ const Home = () => {
           </Col>
         </Row>
         <br />
-        <Row>
-          <Col xs={1}>
-            <Pagination
-              postsPerPage={postsPerPage}
-              totalPosts={peerList.length}
-              paginate={paginate}
-            />
-          </Col>
-        </Row>
-        <Row>
-          <Col sm={12} md={3} style={{ marginBottom: "1rem" }}>
-            <ListGroup>
-              <ListGroup.Item
-                action
-                onClick={(e) => {
-                  filterPeersAsCategory("clear");
-                }}
-              >
-                Clear Filter
-              </ListGroup.Item>
-              <Link href={"add"}>
-                <ListGroup.Item action>Add new Peer</ListGroup.Item>
-              </Link>
-            </ListGroup>
-            <br></br>
-            <ListGroup>
-              <Categories
-                categories={categories}
-                filterPeersAsCategory={filterPeersAsCategory}
+        {!isMobile ? (
+          <Row>
+            <Col xs={1}>
+              <Pagination
+                postsPerPage={postsPerPage}
+                totalPosts={peerList.length}
+                paginate={paginate}
               />
-            </ListGroup>
-          </Col>
+            </Col>
+          </Row>
+        ) : (
+          ""
+        )}
+
+        <Row>
+          {!isMobile ? (
+            <Col sm={12} md={3} style={{ marginBottom: "1rem" }}>
+              <ListGroup>
+                <ListGroup.Item
+                  action
+                  onClick={(e) => {
+                    filterPeersAsCategory("clear");
+                  }}
+                >
+                  Clear Filter
+                </ListGroup.Item>
+                <Link href={"add"}>
+                  <ListGroup.Item action>Add new Peer</ListGroup.Item>
+                </Link>
+              </ListGroup>
+              <br></br>
+              <ListGroup>
+                <Categories
+                  categories={categories}
+                  filterPeersAsCategory={filterPeersAsCategory}
+                />
+              </ListGroup>
+            </Col>
+          ) : (
+            ""
+          )}
           <Col sm={12} md={9} style={{ display: "flex", flexDirection: "row" }}>
             <Col>
               <Row>
