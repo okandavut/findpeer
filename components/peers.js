@@ -1,32 +1,13 @@
-import Head from "next/head";
-import { useEffect, useState } from "react";
-import {
-  Card,
-  Button,
-  Container,
-  Row,
-  Col,
-  ListGroup,
-  Form,
-} from "react-bootstrap";
+import React from "react";
+import { Row, Card, Col, Button } from "react-bootstrap";
 
-const Peers = ({ peers, loading }) => {
-  if (loading) {
-    //TODO :Add loading
-  }
+const Peers = ({ peers }) => {
   return (
-    <>
+    <Row className={"mt-3"}>
       {peers
         ? peers.map((peer, i) => {
             return (
-              <Col
-                xs={12}
-                s={6}
-                md={6}
-                lg={4}
-                key={i}
-                style={{ marginBottom: "1rem" }}
-              >
+              <Col xs={12} s={6} md={6} lg={4} key={i} className={"mb-2"}>
                 <Card
                   style={{
                     maxHeight: "50rem",
@@ -45,8 +26,8 @@ const Peers = ({ peers, loading }) => {
                   />
                   <Card.Body>
                     <Card.Title>{peer.Name}</Card.Title>
+                    <Card.Text>{peer.Description}</Card.Text>
                     <Card.Text>
-                      {peer.Description} <br />
                       <b>{peer.Category}</b>
                     </Card.Text>
                     <Button
@@ -61,8 +42,8 @@ const Peers = ({ peers, loading }) => {
               </Col>
             );
           })
-        : ""}
-    </>
+        : null}
+    </Row>
   );
 };
 
