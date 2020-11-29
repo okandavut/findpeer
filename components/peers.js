@@ -12,6 +12,7 @@ const Peers = ({ peers }) => {
                   style={{
                     maxHeight: "50rem",
                     textAlign: "center",
+                    height: "100%",
                   }}
                   key={i}
                 >
@@ -25,7 +26,12 @@ const Peers = ({ peers }) => {
                       margin: "1rem auto 1rem auto",
                     }}
                   />
-                  <Card.Body>
+                  <Card.Body
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                    }}
+                  >
                     <Card.Title>{peer.Name}</Card.Title>
                     <Card.Text>{peer.Description}</Card.Text>
                     <Card.Text>
@@ -35,6 +41,9 @@ const Peers = ({ peers }) => {
                       variant="primary"
                       target="_blank"
                       href={peer.Superpeer}
+                      style={{
+                        marginTop: "auto"
+                      }}
                     >
                       Let's Talk
                     </Button>
