@@ -18,6 +18,7 @@ const Peers = ({ peers }) => {
                   <Card.Img
                     variant="top"
                     src={peer.ImgUrl}
+                    alt="peerPicture"
                     style={{
                       width: "13rem",
                       maxHeight: "50rem",
