@@ -9,8 +9,8 @@
 Live preview : https://findsupeer.vercel.app/
 
 Screenshoots : 
-![PeerList](/peerlist_page.png) <br>
-![AddPeer](/add_peer_page.png)
+![PeerList](/peerlist.png) <br>
+![AddPeer](/add_peer.png)
 
 ### Features
 
