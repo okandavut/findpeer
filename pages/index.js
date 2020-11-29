@@ -80,10 +80,6 @@ export default function Home() {
     const indexOfFirstPost = indexOfLastPost - postsPerPage;
 
     if (!hiddenTabletOrMobile || indexOfFirstPost == indexOfLastPost) {
-      if (!hiddenTabletOrMobile && selectedCategory !== "clear") {
-        setSelectedCategory("clear");
-        filterPeersAsCategory("clear");
-      }
       return list;
     }
     return list.slice(indexOfFirstPost, indexOfLastPost);
