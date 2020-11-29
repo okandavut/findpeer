@@ -1,0 +1,18 @@
+.filter-column {
+  margin-top: 171px;
+}
+
+@media screen and (max-width: 768px) {
+  .filter-column {
+    margin-top: 1em !important;
+  }
+  .right-column {
+    margin-top: 1em !important;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .hidden-lg {
+    display: none !important;
+  }
+}
