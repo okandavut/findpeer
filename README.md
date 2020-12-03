@@ -6,7 +6,7 @@
 
 ### Preview & Screenshoots
 
-Live preview : https://findsupeer.vercel.app/
+Live : http://findsuperpeer.com/
 
 Screenshoots : 
 ![PeerList](/peerlist.png)
