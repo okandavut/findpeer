@@ -1,4 +1,5 @@
 import axios from "axios";
+import shuffle from "../utils/shuffleHelper";
 
 async function getCategories() {
   const res = await axios.get(
@@ -8,7 +9,8 @@ async function getCategories() {
 }
 async function getPeers() {
   const res = await axios.get("https://findsupeerbackend.herokuapp.com/peers");
-  return res.data;
+
+  return shuffle(res.data);
 }
 
 module.exports = {
