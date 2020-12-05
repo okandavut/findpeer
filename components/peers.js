@@ -7,12 +7,14 @@ const Peers = ({ peers }) => {
   const [modalShow, setModalShow] = useState(false);
   const [userInfo, setUserInfo] = useState({});
   const [superpeer, setSuperpeer] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const getSuperpeerInformation = (username) => {
     username = username.split("/")[3];
-    console.log(username);
+    setLoading(true);
     Promise.all([getSuperPeerData(username)]).then((results) => {
       setUserInfo(results[0]);
+      setLoading(false);
     });
   };
 
@@ -73,12 +75,18 @@ const Peers = ({ peers }) => {
             })
           : null}
       </Row>
-      <UserInformationModal
-        show={modalShow}
-        onHide={() => setModalShow(false)}
-        userInfo={userInfo}
-        superpeer={superpeer}
-      />
+      {userInfo && (
+        <UserInformationModal
+          show={modalShow}
+          onHide={() => {
+            setModalShow(false);
+            setUserInfo({});
+          }}
+          userInfo={userInfo}
+          superpeer={superpeer}
+          loading={loading}
+        />
+      )}
     </>
   );
 };
