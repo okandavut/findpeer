@@ -13,7 +13,16 @@ async function getPeers() {
   return shuffle(res.data);
 }
 
+async function getSuperPeerData(username) {
+  const res = await axios.post("https://findsupeerbackend.herokuapp.com/getSuperpeerInfo", {
+    username: username,
+  });
+
+  return res.data;
+}
+
 module.exports = {
   getCategories,
   getPeers,
+  getSuperPeerData
 };
