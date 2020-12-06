@@ -108,7 +108,7 @@ export default function Add() {
                   type="text"
                   placeholder="Superpeer username"
                   onChange={(e) => setSuperpeer(e.target.value)}
-                  maxLength="10"
+                  maxLength="25"
                 />
               </Form.Group>
               <Form.Group controlId="exampleForm.ControlSelect2">
