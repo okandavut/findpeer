@@ -50,7 +50,6 @@ const UserInformationModal = ({
                   {userInfo.videoUrl != "" && (
                     <video
                       src={userInfo.videoUrl}
-                      autoPlay
                       controls
                       type="video/mp4"
                       poster={userInfo.avatarUrl}
