@@ -110,15 +110,18 @@ export default function Home() {
                   <Row
                     style={{ justifyContent: "flex-end", padding: "0 15px" }}
                   >
-                    <Link href={"add"}>
-                      <Button variant="success">Add new Peer</Button>
-                    </Link>
-                    <Link
+                    <a
+                      target="_blank"
                       href={
                         "https://github.com/okandavut/find-superpeer/issues/new"
                       }
                     >
-                      <Button variant="success">Send Request</Button>
+                      <Button variant="primary" style={{ marginRight: "5px" }}>
+                        Send Request
+                      </Button>
+                    </a>
+                    <Link href={"add"}>
+                      <Button variant="success">Add new Peer</Button>
                     </Link>
                   </Row>
                   <SearchInput handleChange={handleChange} />
