@@ -19,9 +19,9 @@ export default function Home() {
   const [currentPageRange, setCurrentPageRange] = useState(9);
   const [pageRangeList, setPageRangeList] = useState([
     { id: 9, name: "9/page" },
-    { id: 18, name: "18/page" }, 
+    { id: 18, name: "18/page" },
     { id: 45, name: "45/page" },
-    { id: 90, name: "90/page" }
+    { id: 90, name: "90/page" },
   ]);
   const hiddenTabletOrMobile = useMediaQuery({
     query: "(min-device-width: 992px)",
@@ -36,7 +36,7 @@ export default function Home() {
   };
 
   const selectedPageRange = (range) => {
-    return pageRangeList.filter((list)=> list.id == range)[0];
+    return pageRangeList.filter((list) => list.id == range)[0];
   };
 
   useEffect(() => {
@@ -91,7 +91,7 @@ export default function Home() {
   };
 
   const getPeerList = (list) => {
-    const pageSize = selectedPageRange(currentPageRange).id
+    const pageSize = selectedPageRange(currentPageRange).id;
     const indexOfLastPost = currentPage * pageSize;
     const indexOfFirstPost = indexOfLastPost - pageSize;
 
@@ -103,7 +103,11 @@ export default function Home() {
 
   const getPageItemList = () => {
     const items = [];
-    for (let i = 1; i <= Math.ceil(getList().length / selectedPageRange(currentPageRange).id); i++) {
+    for (
+      let i = 1;
+      i <= Math.ceil(getList().length / selectedPageRange(currentPageRange).id);
+      i++
+    ) {
       items.push(i);
     }
     return items;
@@ -143,10 +147,13 @@ export default function Home() {
                     <Button variant="success">Add new Peer</Button>
                   </Link>
                 </Row>
+
                 <SearchInput handleChange={handleChange} />
                 <Pagination
-                  postsPerPage={postsPerPage}
-                  totalPosts={getList().length}
+                  pageRangeList={pageRangeList}
+                  selectedPageRange={selectedPageRange(currentPageRange)}
+                  alterCurrentPageRange={alterCurrentPageRange}
+                  pageItemList={getPageItemList()}
                   paginate={paginate}
                   currentPage={currentPage}
                 />
@@ -154,15 +161,7 @@ export default function Home() {
                   <Row style={{ justifyContent: "center", marginTop: "40px" }}>
                     <Loading style={{ marginTop: "40px" }} />
                   </Row>
-                  <SearchInput handleChange={handleChange} />
-                  <Pagination
-                    pageRangeList={pageRangeList}
-                    selectedPageRange={selectedPageRange(currentPageRange)}
-                    alterCurrentPageRange={alterCurrentPageRange}
-                    pageItemList={getPageItemList()}
-                    paginate={paginate}
-                    currentPage={currentPage}
-                  />
+                ) : (
                   <Peers peers={getPeerList(getList())} />
                 )}
               </Col>
