@@ -44,6 +44,7 @@ const Peers = ({ peers }) => {
                         width: "5rem",
                         maxHeight: "5rem",
                         margin: "1rem auto 1rem auto",
+                        borderRadius: "50px",
                       }}
                     />
                     <Card.Body
