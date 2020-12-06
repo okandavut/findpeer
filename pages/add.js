@@ -4,6 +4,7 @@ import { List } from "react-content-loader";
 import Link from "next/link";
 import { getCategories } from "../api/api";
 import axios from "axios";
+import { getSuperPeerData } from "../api/api";
 
 export default function Add() {
   const [name, setName] = useState("");
@@ -13,6 +14,7 @@ export default function Add() {
   const [categories, setCategories] = useState([]);
   const [checkedCategories, setCheckedCategories] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [userInfo, setUserInfo] = useState({});
 
   useEffect(() => {
     setLoading(true);
@@ -46,28 +48,50 @@ export default function Add() {
         return element !== undefined;
       });
 
-    if (name == "" || superpeer == "") {
-      alert("Please fill the information");
-    }
     if (categoryItem.length == 0) {
       categoryItem.push("Other");
     }
-    if (name != "" && superpeer != "" && categoryItem.length != 0) {
-      const res = await axios
-        .post("https://findsupeerbackend.herokuapp.com/addPeer", {
-          Name: name,
-          Superpeer: superpeer,
-          ImgUrl: imgUrl,
-          Category: categoryItem.join(),
-          Description: description,
-        })
-        .then((res) => {
-          if (res.status == 200) {
-            alert("Successfully added.");
-            location.reload();
-          }
-        });
+
+    if (superpeer == "") {
+      alert("Please fill the information");
+    } else {
+      Promise.all([getSuperPeerData(superpeer)]).then((results) => {
+        if (!results[0]) {
+          alert("Can't find user");
+        } else {
+          submitAddPeer(
+            `${results[0].firstName} ${results[0].lastName}`,
+            superpeer,
+            results[0].avatarUrl,
+            categoryItem,
+            results[0].shortDescription
+          );
+        }
+      });
     }
+  }
+
+  async function submitAddPeer(
+    name,
+    superpeer,
+    imgUrl,
+    categoryItem,
+    description
+  ) {
+    const res = await axios
+      .post("https://findsupeerbackend.herokuapp.com/addPeer", {
+        Name: name,
+        Superpeer: superpeer,
+        ImgUrl: imgUrl,
+        Category: categoryItem.join(),
+        Description: description,
+      })
+      .then((res) => {
+        if (res.status == 200) {
+          alert("Successfully added.");
+          location.reload();
+        }
+      });
   }
 
   return (
@@ -81,36 +105,12 @@ export default function Add() {
             <hr />
             <Form>
               <Form.Group controlId="exampleForm.ControlInput1">
-                <Form.Label>Name Surname</Form.Label>
-                <Form.Control
-                  type="text"
-                  placeholder="Name Surname"
-                  onChange={(e) => setName(e.target.value)}
-                />
-              </Form.Group>
-              <Form.Group controlId="exampleForm.ControlInput1">
                 <Form.Label>Superpeer Username</Form.Label>
                 <Form.Control
                   type="text"
                   placeholder="Superpeer username"
                   onChange={(e) => setSuperpeer(e.target.value)}
-                />
-              </Form.Group>
-              <Form.Group controlId="exampleForm.ControlInput1">
-                <Form.Label>Image URL</Form.Label>
-                <Form.Control
-                  type="text"
-                  placeholder="Image Url"
-                  onChange={(e) => setImgUrl(e.target.value)}
-                />
-              </Form.Group>
-
-              <Form.Group controlId="exampleForm.ControlTextarea1">
-                <Form.Label>Description</Form.Label>
-                <Form.Control
-                  as="textarea"
-                  rows={3}
-                  onChange={(e) => setDescription(e.target.value)}
+                  maxLength="10"
                 />
               </Form.Group>
               <Form.Group controlId="exampleForm.ControlSelect2">
@@ -140,7 +140,7 @@ export default function Add() {
               <Form.Group controlId="exampleForm.ControlSelect2">
                 <Button variant="success" onClick={addNewPeer}>
                   Add
-                </Button>{" "}
+                </Button>
                 <Link href={"/"}>
                   <Button variant="light">Cancel</Button>
                 </Link>

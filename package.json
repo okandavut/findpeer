@@ -17,6 +17,7 @@
     "node-fetch": "^2.6.1",
     "react": "16.13.1",
     "react-bootstrap": "^1.4.0",
+    "react-bootstrap-icons": "^1.1.0",
     "react-content-loader": "^5.1.4",
     "react-dom": "^17.0.1",
     "react-responsive": "^8.1.1"
