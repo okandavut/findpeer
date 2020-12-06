@@ -113,6 +113,13 @@ export default function Home() {
                     <Link href={"add"}>
                       <Button variant="success">Add new Peer</Button>
                     </Link>
+                    <Link
+                      href={
+                        "https://github.com/okandavut/find-superpeer/issues/new"
+                      }
+                    >
+                      <Button variant="success">Send Request</Button>
+                    </Link>
                   </Row>
                   <SearchInput handleChange={handleChange} />
                   <Pagination

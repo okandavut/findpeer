@@ -1,27 +1,26 @@
 <h1 align="center">Find Your Peer 👋</h1>
 
- <b> Find your peer is  a web application that allows you to find users on Superpeer. <br>
- </b>
-
+<b> Find your peer is a web application that allows you to find users on Superpeer. <br>
+</b>
 
 ### Preview & Screenshoots
 
 Live : http://findsuperpeer.com/
 
-Screenshoots : 
-![PeerList](/peerlist.png)
+Screenshoots :
+![PeerList](screenshoots/peerlist.png)
 
 <hr>
 
-![AddPeer](/add_peer.png)
+![AddPeer](screenshoots/add_peer.png)
 
 ### Features
 
-- Find people on Superpeer 
-    - Filter by category
-    - Search by name and description
+- Find people on Superpeer
+  - Filter by category
+  - Search by name and description
 - Add new peer
-    - You can add yourself or another people to system
+  - You can add yourself or another people to system
 
 ### Technologies
 
@@ -30,7 +29,6 @@ Screenshoots :
 - [Axios](https://github.com/axios/axios)
 - [React Bootstrap](https://react-bootstrap.github.io/)
 
-
 ### Feedback
 
 Feel free to send me feedback on [Twitter](https://twitter.com/okandavutcom) or [file an issue](https://github.com/okandavut/find-superpeer/issues/new). Feature requests are always welcome. If you wish to contribute, please go ahead and open PR.
@@ -38,7 +36,6 @@ Feel free to send me feedback on [Twitter](https://twitter.com/okandavutcom) or 
 If there's anything you'd like to chat about, please feel free send me dm on [Twitter](https://twitter.com/okandavutcom)!
 
 ### Contributors
-
 
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
@@ -59,10 +56,13 @@ If there's anything you'd like to chat about, please feel free send me dm on [Tw
 
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
+
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 ### LICENSE
+
 [MIT](LICENSE)
 
 ### Note
+
 The data used in the project is taken from the awesome-superpeer (https://github.com/suadev/awesome-superpeer) repository. Thanks to Suat Köse :)
