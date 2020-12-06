@@ -16,7 +16,13 @@ export default function Home() {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const postsPerPage = 9;
+  const [currentPageRange, setCurrentPageRange] = useState(12);
+  const [pageRangeList, setPageRangeList] = useState([
+    { id: 12, name: "12/page" },
+    { id: 24, name: "24/page" }, 
+    { id: 60, name: "60/page" },
+    { id: 120, name: "120/page" }
+  ]);
   const hiddenTabletOrMobile = useMediaQuery({
     query: "(min-device-width: 992px)",
   });
@@ -25,11 +31,20 @@ export default function Home() {
     setCurrentPage(pageNumber);
   };
 
+  const alterCurrentPageRange = (range) => {
+    setCurrentPageRange(range);
+  };
+
+  const selectedPageRange = (range) => {
+    return pageRangeList.filter((list)=> list.id == range)[0];
+  };
+
   useEffect(() => {
     setLoading(true);
     Promise.all([getCategories(), getPeers()]).then((results) => {
       setCategories(results[0]);
       setPeerList(results[1]);
+      pageRangeList.push({ id: results[1].length, name: "All" });
       setLoading(false);
     });
   }, []);
@@ -76,13 +91,22 @@ export default function Home() {
   };
 
   const getPeerList = (list) => {
-    const indexOfLastPost = currentPage * postsPerPage;
-    const indexOfFirstPost = indexOfLastPost - postsPerPage;
+    const pageSize = selectedPageRange(currentPageRange).id
+    const indexOfLastPost = currentPage * pageSize;
+    const indexOfFirstPost = indexOfLastPost - pageSize;
 
     if (!hiddenTabletOrMobile || indexOfFirstPost == indexOfLastPost) {
       return list;
     }
     return list.slice(indexOfFirstPost, indexOfLastPost);
+  };
+
+  const getPageItemList = () => {
+    const items = [];
+    for (let i = 1; i <= Math.ceil(getList().length / selectedPageRange(currentPageRange).id); i++) {
+      items.push(i);
+    }
+    return items;
   };
 
   return (
@@ -126,8 +150,10 @@ export default function Home() {
                   </Row>
                   <SearchInput handleChange={handleChange} />
                   <Pagination
-                    postsPerPage={postsPerPage}
-                    totalPosts={getList().length}
+                    pageRangeList={pageRangeList}
+                    selectedPageRange={selectedPageRange(currentPageRange)}
+                    alterCurrentPageRange={alterCurrentPageRange}
+                    pageItemList={getPageItemList()}
                     paginate={paginate}
                     currentPage={currentPage}
                   />
