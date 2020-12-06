@@ -1,7 +1,7 @@
 import React from "react";
 import { Col, Pagination as BPagination,  Row, Dropdown, DropdownButton, ButtonGroup } from "react-bootstrap";
 
-const Pagination = ({ perPageRange, selectedPageRange, alterCurrentPageRange, pageItemList, paginate, currentPage }) => {
+const Pagination = ({ pageRangeList, selectedPageRange, alterCurrentPageRange, pageItemList, paginate, currentPage }) => {
   
   if(pageItemList.length > 1) {
     return (
@@ -21,7 +21,7 @@ const Pagination = ({ perPageRange, selectedPageRange, alterCurrentPageRange, pa
                   {item}
                 </BPagination.Item>
               ))
-            };
+            }
           </BPagination>
         </Col>  
         {
@@ -34,7 +34,7 @@ const Pagination = ({ perPageRange, selectedPageRange, alterCurrentPageRange, pa
               title={selectedPageRange.name}
             >
               {
-                perPageRange.map((pageSize, i) => (
+                pageRangeList.map((pageSize, i) => (
                   <Dropdown.Item 
                     eventKey={pageSize.id} 
                     onClick={() => alterCurrentPageRange(pageSize.id)} 
@@ -44,7 +44,7 @@ const Pagination = ({ perPageRange, selectedPageRange, alterCurrentPageRange, pa
               }
             </DropdownType>
           ))
-        };
+        }
       </Row>
     );
   } else {
@@ -63,7 +63,7 @@ const Pagination = ({ perPageRange, selectedPageRange, alterCurrentPageRange, pa
                 title={selectedPageRange.name}
               >
                 {
-                  perPageRange.map((pageSize, i) => (
+                  pageRangeList.map((pageSize, i) => (
                     <Dropdown.Item 
                       eventKey={pageSize.id} 
                       onClick={() => alterCurrentPageRange(pageSize.id)} 
@@ -73,7 +73,7 @@ const Pagination = ({ perPageRange, selectedPageRange, alterCurrentPageRange, pa
                 }
               </DropdownType>
             ))
-          };
+          }
         </Row>
       )
     };
