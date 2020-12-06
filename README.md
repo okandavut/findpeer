@@ -8,7 +8,7 @@
 Live : http://findsuperpeer.com/
 
 Screenshoots :
-![PeerList](screenshoots/peerlist.png)
+![PeerList](screenshoots/peerlist_with_images.png)
 
 <hr>
 
