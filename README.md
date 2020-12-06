@@ -35,6 +35,9 @@ Feel free to send me feedback on [Twitter](https://twitter.com/okandavutcom) or 
 
 If there's anything you'd like to chat about, please feel free send me dm on [Twitter](https://twitter.com/okandavutcom)!
 
+## *Contributions*
+Contributions and suggestions are very welcome and wanted. I try to respond to pull requests within 48 hours. For more information see [CONTRIBUTING.md](https://github.com/okandavut/FindSuperpeer/blob/master/CONTRIBUTING.md).
+
 ### Contributors
 
 <!-- markdownlint-enable -->
