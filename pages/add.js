@@ -1,20 +1,16 @@
 import { useEffect, useState } from "react";
-import { Button, Container, Form } from "react-bootstrap";
-import { List } from "react-content-loader";
+import { Button, Container, Form, Row } from "react-bootstrap";
 import Link from "next/link";
 import { getCategories } from "../api/api";
 import axios from "axios";
 import { getSuperPeerData } from "../api/api";
+import Loading from "../components/loading";
 
 export default function Add() {
-  const [name, setName] = useState("");
   const [superpeer, setSuperpeer] = useState("");
-  const [imgUrl, setImgUrl] = useState("");
-  const [description, setDescription] = useState("");
   const [categories, setCategories] = useState([]);
   const [checkedCategories, setCheckedCategories] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [userInfo, setUserInfo] = useState({});
 
   useEffect(() => {
     setLoading(true);
@@ -97,12 +93,14 @@ export default function Add() {
   return (
     <>
       <Container>
-        {loading ? (
-          <List style={{ marginTop: "21px" }} />
-        ) : (
-          <>
-            <h3 style={{ marginTop: "21px" }}>Add New Peer</h3>
-            <hr />
+        <>
+          <h3 style={{ marginTop: "21px" }}>Add New Peer</h3>
+          <hr />
+          {loading ? (
+            <Row style={{ justifyContent: "center", marginTop: "40px" }}>
+              <Loading style={{ marginTop: "40px" }} />
+            </Row>
+          ) : (
             <Form>
               <Form.Group controlId="exampleForm.ControlInput1">
                 <Form.Label>Superpeer Username</Form.Label>
@@ -146,8 +144,8 @@ export default function Add() {
                 </Link>
               </Form.Group>
             </Form>
-          </>
-        )}
+          )}
+        </>
       </Container>
     </>
   );

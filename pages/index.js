@@ -1,5 +1,4 @@
 import { Button, Container, Row, Col } from "react-bootstrap";
-import { List } from "react-content-loader";
 import Link from "next/link";
 import { getCategories, getPeers } from "../api/api";
 import Peers from "../components/peers";
@@ -8,6 +7,7 @@ import FilterColumn from "../components/filterColumn";
 import { useEffect, useState } from "react";
 import Pagination from "../components/pagination";
 import { useMediaQuery } from "react-responsive";
+import Loading from "../components/loading";
 
 export default function Home() {
   const [filteredPeerList, setFilteredPeerList] = useState(null);
@@ -19,9 +19,9 @@ export default function Home() {
   const [currentPageRange, setCurrentPageRange] = useState(9);
   const [pageRangeList, setPageRangeList] = useState([
     { id: 9, name: "9/page" },
-    { id: 18, name: "18/page" }, 
+    { id: 18, name: "18/page" },
     { id: 45, name: "45/page" },
-    { id: 90, name: "90/page" }
+    { id: 90, name: "90/page" },
   ]);
   const hiddenTabletOrMobile = useMediaQuery({
     query: "(min-device-width: 992px)",
@@ -36,7 +36,7 @@ export default function Home() {
   };
 
   const selectedPageRange = (range) => {
-    return pageRangeList.filter((list)=> list.id == range)[0];
+    return pageRangeList.filter((list) => list.id == range)[0];
   };
 
   useEffect(() => {
@@ -91,7 +91,7 @@ export default function Home() {
   };
 
   const getPeerList = (list) => {
-    const pageSize = selectedPageRange(currentPageRange).id
+    const pageSize = selectedPageRange(currentPageRange).id;
     const indexOfLastPost = currentPage * pageSize;
     const indexOfFirstPost = indexOfLastPost - pageSize;
 
@@ -103,7 +103,11 @@ export default function Home() {
 
   const getPageItemList = () => {
     const items = [];
-    for (let i = 1; i <= Math.ceil(getList().length / selectedPageRange(currentPageRange).id); i++) {
+    for (
+      let i = 1;
+      i <= Math.ceil(getList().length / selectedPageRange(currentPageRange).id);
+      i++
+    ) {
       items.push(i);
     }
     return items;
@@ -112,57 +116,58 @@ export default function Home() {
   return (
     <>
       <Container>
-        {loading ? (
-          <List style={{ marginTop: "21px" }} />
-        ) : (
-          <>
-            <h3 style={{ marginTop: "21px" }}>Find Your Peer</h3>
-            <hr />
-            <Row>
-              <FilterColumn
-                categories={categories}
-                filterPeersAsCategory={filterPeersAsCategory}
-                setSelectedCategory={setSelectedCategory}
-                selectedCategory={selectedCategory}
-              />
-              <Col
-                sm={12}
-                md={9}
-                style={{ display: "flex", flexDirection: "row" }}
-              >
-                <Col className={"right-column"}>
-                  <Row
-                    style={{ justifyContent: "flex-end", padding: "0 15px" }}
+        <>
+          <h3 style={{ marginTop: "21px" }}>Find Your Peer</h3>
+          <hr />
+          <Row>
+            <FilterColumn
+              categories={categories}
+              filterPeersAsCategory={filterPeersAsCategory}
+              setSelectedCategory={setSelectedCategory}
+              selectedCategory={selectedCategory}
+            />
+            <Col
+              sm={12}
+              md={9}
+              style={{ display: "flex", flexDirection: "row" }}
+            >
+              <Col className={"right-column"}>
+                <Row style={{ justifyContent: "flex-end", padding: "0 15px" }}>
+                  <a
+                    target="_blank"
+                    href={
+                      "https://github.com/okandavut/find-superpeer/issues/new"
+                    }
                   >
-                    <a
-                      target="_blank"
-                      href={
-                        "https://github.com/okandavut/find-superpeer/issues/new"
-                      }
-                    >
-                      <Button variant="primary" style={{ marginRight: "5px" }}>
-                        Send Request
-                      </Button>
-                    </a>
-                    <Link href={"add"}>
-                      <Button variant="success">Add new Peer</Button>
-                    </Link>
+                    <Button variant="primary" style={{ marginRight: "5px" }}>
+                      Send Request
+                    </Button>
+                  </a>
+                  <Link href={"add"}>
+                    <Button variant="success">Add new Peer</Button>
+                  </Link>
+                </Row>
+
+                <SearchInput handleChange={handleChange} />
+                <Pagination
+                  pageRangeList={pageRangeList}
+                  selectedPageRange={selectedPageRange(currentPageRange)}
+                  alterCurrentPageRange={alterCurrentPageRange}
+                  pageItemList={getPageItemList()}
+                  paginate={paginate}
+                  currentPage={currentPage}
+                />
+                {loading ? (
+                  <Row style={{ justifyContent: "center", marginTop: "40px" }}>
+                    <Loading style={{ marginTop: "40px" }} />
                   </Row>
-                  <SearchInput handleChange={handleChange} />
-                  <Pagination
-                    pageRangeList={pageRangeList}
-                    selectedPageRange={selectedPageRange(currentPageRange)}
-                    alterCurrentPageRange={alterCurrentPageRange}
-                    pageItemList={getPageItemList()}
-                    paginate={paginate}
-                    currentPage={currentPage}
-                  />
+                ) : (
                   <Peers peers={getPeerList(getList())} />
-                </Col>
+                )}
               </Col>
-            </Row>
-          </>
-        )}
+            </Col>
+          </Row>
+        </>
       </Container>
     </>
   );
