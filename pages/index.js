@@ -16,7 +16,7 @@ export default function Home() {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [currentPageRange, setCurrentPageRange] = useState(12);
+  const [currentPageRange, setCurrentPageRange] = useState(9);
   const [pageRangeList, setPageRangeList] = useState([
     { id: 9, name: "9/page" },
     { id: 18, name: "18/page" }, 
