@@ -14,15 +14,32 @@ async function getPeers() {
 }
 
 async function getSuperPeerData(username) {
-  const res = await axios.post("https://findsupeerbackend.herokuapp.com/getSuperpeerInfo", {
-    username: username,
-  });
-
+  const res = await axios.post(
+    "https://findsupeerbackend.herokuapp.com/getSuperpeerInfo",
+    {
+      username: username,
+    }
+  );
   return res.data;
 }
 
+async function getImageAsBase64(image) {
+  const res = await axios
+    .post(
+      "https://findsupeerbackend.herokuapp.com/getImageAsBase64",
+      {
+        ImgUrl: image,
+      },
+      { timeout: 1500 }
+    )
+    .catch((error) => {
+      return image;
+    });
+  return res.data;
+}
 module.exports = {
   getCategories,
   getPeers,
-  getSuperPeerData
+  getSuperPeerData,
+  getImageAsBase64,
 };

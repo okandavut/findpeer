@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Row, Card, Col, Button } from "react-bootstrap";
-import { getSuperPeerData } from "../api/api";
+import { getSuperPeerData, getImageAsBase64 } from "../api/api";
 import UserInformationModal from "../components/userInformationModal";
 
 const Peers = ({ peers }) => {
@@ -13,8 +13,11 @@ const Peers = ({ peers }) => {
     username = username.split("/")[3];
     setLoading(true);
     Promise.all([getSuperPeerData(username)]).then((results) => {
-      setUserInfo(results[0]);
-      setLoading(false);
+      getImageAsBase64(results[0].avatarUrl).then((data) => {
+        results[0].avatarUrl = data;
+        setUserInfo(results[0]);
+        setLoading(false);
+      });
     });
   };
 
