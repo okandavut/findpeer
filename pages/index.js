@@ -18,10 +18,10 @@ export default function Home() {
   const [currentPage, setCurrentPage] = useState(1);
   const [currentPageRange, setCurrentPageRange] = useState(12);
   const [pageRangeList, setPageRangeList] = useState([
-    { id: 12, name: "12/page" },
-    { id: 24, name: "24/page" }, 
-    { id: 60, name: "60/page" },
-    { id: 120, name: "120/page" }
+    { id: 9, name: "9/page" },
+    { id: 18, name: "18/page" }, 
+    { id: 45, name: "45/page" },
+    { id: 90, name: "90/page" }
   ]);
   const hiddenTabletOrMobile = useMediaQuery({
     query: "(min-device-width: 992px)",
