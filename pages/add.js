@@ -1,16 +1,18 @@
 import { useEffect, useState } from "react";
 import { Button, Container, Form, Row } from "react-bootstrap";
-import Link from "next/link";
-import { getCategories } from "../api/api";
-import axios from "axios";
-import { getSuperPeerData } from "../api/api";
 import Loading from "../components/loading";
+import Alert from "react-bootstrap/Alert";
+import Link from "next/link";
+import axios from "axios";
+import { getSuperPeerData, getCategories } from "../api/api";
 
 export default function Add() {
   const [superpeer, setSuperpeer] = useState("");
   const [categories, setCategories] = useState([]);
   const [checkedCategories, setCheckedCategories] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [show, setShow] = useState(false);
+  const [alertText, setAlertText] = useState("");
 
   useEffect(() => {
     setLoading(true);
@@ -49,11 +51,13 @@ export default function Add() {
     }
 
     if (superpeer == "") {
-      alert("Please fill the information");
+      setShow(true);
+      setAlertText("Please fill Superpeer username");
     } else {
       Promise.all([getSuperPeerData(superpeer)]).then((results) => {
         if (!results[0]) {
-          alert("Can't find user");
+          setShow(true);
+          setAlertText("Can't Find User");
         } else {
           submitAddPeer(
             `${results[0].firstName} ${results[0].lastName}`,
@@ -101,49 +105,62 @@ export default function Add() {
               <Loading style={{ marginTop: "40px" }} />
             </Row>
           ) : (
-            <Form>
-              <Form.Group controlId="exampleForm.ControlInput1">
-                <Form.Label>Superpeer Username</Form.Label>
-                <Form.Control
-                  type="text"
-                  placeholder="Superpeer username"
-                  onChange={(e) => setSuperpeer(e.target.value)}
-                  maxLength="25"
-                />
-              </Form.Group>
-              <Form.Group controlId="exampleForm.ControlSelect2">
-                <Form.Label>
-                  Select your category (multiselect) (if you want to add new
-                  please{" "}
-                  <a href="https://github.com/okandavut/find-superpeer/issues/new">
-                    send issue
-                  </a>
-                  )
-                </Form.Label>
-                {categories &&
-                  categories.length > 0 &&
-                  categories.map((category, k) => {
-                    return (
-                      <Form.Check
-                        key={k}
-                        type="checkbox"
-                        label={category.Name}
-                        value={category.Name}
-                        id={category.Id}
-                        onChange={handleCheckCategory}
-                      />
-                    );
-                  })}
-              </Form.Group>
-              <Form.Group controlId="exampleForm.ControlSelect2">
-                <Button variant="success" onClick={addNewPeer}>
-                  Add
-                </Button>
-                <Link href={"/"}>
-                  <Button variant="light">Cancel</Button>
-                </Link>
-              </Form.Group>
-            </Form>
+            <>
+              <Alert
+                variant="danger"
+                show={show}
+                onClose={() => setShow(false)}
+                dismissible
+              >
+                {alertText}
+              </Alert>
+              <Form>
+                <Form.Group controlId="exampleForm.ControlInput1">
+                  <Form.Label>Superpeer Username</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="Superpeer username"
+                    onChange={(e) => {
+                      setSuperpeer(e.target.value);
+                      setShow(false);
+                    }}
+                    maxLength="25"
+                  />
+                </Form.Group>
+                <Form.Group controlId="exampleForm.ControlSelect2">
+                  <Form.Label>
+                    Select your category (multiselect) (if you want to add new
+                    please{" "}
+                    <a href="https://github.com/okandavut/find-superpeer/issues/new">
+                      send issue
+                    </a>
+                    )
+                  </Form.Label>
+                  {categories &&
+                    categories.length > 0 &&
+                    categories.map((category, k) => {
+                      return (
+                        <Form.Check
+                          key={k}
+                          type="checkbox"
+                          label={category.Name}
+                          value={category.Name}
+                          id={category.Id}
+                          onChange={handleCheckCategory}
+                        />
+                      );
+                    })}
+                </Form.Group>
+                <Form.Group controlId="exampleForm.ControlSelect2">
+                  <Button variant="success" onClick={addNewPeer}>
+                    Add
+                  </Button>
+                  <Link href={"/"}>
+                    <Button variant="light">Cancel</Button>
+                  </Link>
+                </Form.Group>
+              </Form>
+            </>
           )}
         </>
       </Container>
