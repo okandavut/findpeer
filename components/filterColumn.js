@@ -12,7 +12,7 @@ const FilterColumn = ({ categories, filterPeersAsCategory, setSelectedCategory, 
             setSelectedCategory("");
           }}
         >
-          Clear Category Filter
+          Clear Filter
         </ListGroup.Item>
       </ListGroup>
       <ListGroup className={"mt-4"}>
