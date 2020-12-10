@@ -12,6 +12,7 @@
     "@material-ui/icons": "^4.9.1",
     "axios": "^0.21.0",
     "bootstrap": "^4.5.3",
+    "emailjs-com": "^2.6.4",
     "next": "10.0.0",
     "next-seo": "^4.17.0",
     "node-fetch": "^2.6.1",
