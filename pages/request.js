@@ -2,17 +2,40 @@ import { useEffect, useState } from "react";
 import { Button, Container, Form, Row } from "react-bootstrap";
 import Link from "next/link";
 import Alert from "react-bootstrap/Alert";
+import axios from "axios";
+import { useRouter } from "next/router";
 
 export default function Request() {
+  const router = useRouter();
   const [superpeer, setSuperpeer] = useState("");
   const [request, setRequest] = useState("");
   const [showError, setShowError] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
 
   const sendMyRequest = () => {
-    if (superpeer === "") setShowError(true);
-    if (request === "") setShowError(true);
+    if (superpeer === "" || request === "") setShowError(true);
+    else {
+      var data = {};
+      axios
+        .post("https://api.emailjs.com/api/v1.0/email/send", {
+          service_id: "service_go15bzc",
+          template_id: "template_yhl7inm",
+          user_id: "user_RaEsuJbQOzn0PxVZQS98v",
+          template_params: {
+            from_name: `${superpeer} User Request`,
+            user: superpeer,
+            message: request,
+          },
+        })
+        .then(function () {
+          setShowSuccess(true);
+          setInterval(() => {
+            router.push("/");
+          }, 1000);
+        });
+    }
   };
+
   return (
     <>
       <Container>
@@ -20,7 +43,7 @@ export default function Request() {
           <h3 style={{ marginTop: "21px" }}>Submit Request to Author</h3>
           <p>
             Submit update, delete or change request about your profile or
-            system.{" "}
+            system.
           </p>
           <hr />
           <>
@@ -38,7 +61,7 @@ export default function Request() {
               onClose={() => setShow(false)}
               dismissible
             >
-              Please fill all the informations.
+              Your Email Sent! :) (going to homepage..)
             </Alert>
             <Form>
               <Form.Group controlId="exampleForm.ControlInput1">
@@ -64,8 +87,7 @@ export default function Request() {
                   }}
                 />
               </Form.Group>
-
-              <Form.Group controlId="exampleForm.ControlSelect2">
+              <Form.Group controlId="html_message">
                 <Button variant="success" onClick={sendMyRequest}>
                   Send
                 </Button>
