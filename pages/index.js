@@ -133,16 +133,11 @@ export default function Home() {
             >
               <Col className={"right-column"}>
                 <Row style={{ justifyContent: "flex-end", padding: "0 15px" }}>
-                  <a
-                    target="_blank"
-                    href={
-                      "https://github.com/okandavut/find-superpeer/issues/new"
-                    }
-                  >
+                  <Link href={"request"}>
                     <Button variant="primary" style={{ marginRight: "5px" }}>
                       Send Request
                     </Button>
-                  </a>
+                  </Link>
                   <Link href={"add"}>
                     <Button variant="success">Add new Peer</Button>
                   </Link>
