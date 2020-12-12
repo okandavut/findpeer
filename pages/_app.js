@@ -6,7 +6,7 @@ import { DefaultSeo } from "next-seo";
 import SEO from "../next-seo.config";
 import { ThemeProvider } from "styled-components";
 import { GlobalStyles } from "../components/globalStyles";
-import { lightTheme, darkTheme } from "../components/Themes";
+import { lightTheme, darkTheme } from "../components/themes";
 import "../styles/index.css";
 
 function MyApp({ Component, pageProps }) {
