@@ -79,8 +79,10 @@ export default function Request() {
                             <Form.Group controlId="exampleForm.ControlTextarea1">
                                 <Form.Label className='lbl-submit-input'>Describe Your Request</Form.Label>
                                 <Form.Control
+                                    className="textarea-request-desc"
                                     as="textarea"
                                     rows={3}
+                                    placeholder="Describe Your Request"
                                     onChange={(e) => {
                                         setRequest(e.target.value);
                                         setShowError(false);

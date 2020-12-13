@@ -7,6 +7,20 @@ import {
   DropdownButton,
   ButtonGroup,
 } from "react-bootstrap";
+import styled from 'styled-components';
+
+const StyledPagination = styled(BPagination)`
+  .page-item .page-link {
+    background: ${({ theme }) => theme.paginationBgColor} ;
+    color: ${({ theme }) => theme.paginationFgColor} ;
+    border-color: ${({ theme }) => theme.paginationBorderColor};
+  }
+  .active .page-link {
+    background: ${({ theme }) => theme.paginationActiveBgColor} ;
+    color: ${({ theme }) => theme.paginationActiveFgColor} ;
+    border-color: ${({ theme }) => theme.paginationActiveBorderColor};
+  }
+`;
 
 const Pagination = ({
   pageRangeList,
@@ -23,7 +37,7 @@ const Pagination = ({
     >
       {pageItemList.length > 1 && (
         <Col md={20}>
-          <BPagination size={"sm"}>
+          <StyledPagination size={"sm"}>
             {pageItemList.map((item) => (
               <BPagination.Item
                 key={item}
@@ -33,7 +47,7 @@ const Pagination = ({
                 {item}
               </BPagination.Item>
             ))}
-          </BPagination>
+          </StyledPagination>
         </Col>
       )}
 
