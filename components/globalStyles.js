@@ -63,5 +63,10 @@ export const GlobalStyles = createGlobalStyle`
   .lbl-submit-input {
     color: ${({ theme }) => theme.submitLabelColor};
   }
-
+  
+  input[type="text"], .textarea-request-desc {
+    background: ${({ theme }) => theme.inputBgColor};
+    color: ${({ theme }) => theme.inputFgColor};
+    border-color: ${({ theme }) => theme.inputBorderColor};
+  }]
 `;
