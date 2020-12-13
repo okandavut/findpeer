@@ -16,3 +16,20 @@
     display: none !important;
   }
 }
+
+header {
+    display: flex;
+    justify-content: space-around;
+    align-items:center;
+    margin-bottom: 1rem;
+    padding: 1rem 0;
+}
+
+header h3 {
+    cursor: pointer;
+}
+
+header img {
+    width: 30px;
+    cursor: pointer;
+}
