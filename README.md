@@ -59,20 +59,22 @@ Contributions and suggestions are very welcome and wanted. I try to respond to p
     <td align="center"><a href="https://github.com/bcinarli" target="_blank"><img src="https://avatars3.githubusercontent.com/u/150777?s=460&u=0d8cfe329001ee1524186947964ad574abdfb3db&v=4" width="100px;" alt=""/><br /><sub><b>Bilal</b></sub></a><br /><a href="https://github.com/okandavut/find-superpeer/commits?author=bcinarli" title="Code">💻</a></td>
   </tr>
 </table>
-<br>
-Thanks to Mert Can Bilgiç for domain.
+<br/>
 </table>
-<table>
-  <tr>
 
-  <td align="center"><a href="https://github.com/mertcb" target="_blank"><img src="https://pbs.twimg.com/profile_images/1341497338997686275/ABunXzH1_400x400.jpg" width="100px;" alt=""/><br /><sub><b>Mert Can Bilgiç
-</b></sub><a href="https://github.com/okandavut/find-superpeer/commits?author=mertcb" title="Tests">⚠️</a></td>
-</tr>
-</table>
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->
+
+Thanks to Mert Can Bilgiç for domain.
+<br/>
+<table>
+  <tr>
+  <td align="center"><a href="https://github.com/mertcb" target="_blank"><img src="https://pbs.twimg.com/profile_images/1341497338997686275/ABunXzH1_400x400.jpg" width="100px;" alt=""/><br /><sub><b>Mert Can Bilgiç
+</b></sub></td>
+</tr>
+</table>
 
 ### LICENSE
 
