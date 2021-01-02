@@ -5,7 +5,7 @@
 
 ### Preview & Screenshoots
 
-Live : http://findsuperpeer.com/
+Live : https://findpeer.me/
 
 Screenshoots :
 ![PeerList](screenshoots/peerlist_with_images.png)
