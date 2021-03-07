@@ -71,7 +71,7 @@ Thanks to Mert Can Bilgiç for domain.
 <br/>
 <table>
   <tr>
-  <td align="center"><a href="https://github.com/mertcb" target="_blank"><img src="https://pbs.twimg.com/profile_images/1341497338997686275/ABunXzH1_400x400.jpg" width="100px;" alt=""/><br /><sub><b>Mert Can Bilgiç
+  <td align="center"><a href="https://github.com/mertcb" target="_blank"><img src="https://avatars.githubusercontent.com/u/36340604?s=460&u=b3e9b692c28eb8ff7ca801f1f391227ee6bac787&v=4" width="100px;" alt=""/><br /><sub><b>Mert Can Bilgiç
 </b></sub></td>
 </tr>
 </table>
