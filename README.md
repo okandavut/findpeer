@@ -11,11 +11,11 @@
 Live : https://findpeer.me/
 
 Screenshoots :
-![PeerList](screenshoots/peerlist_with_images.png)
+![peerlist_with_images](https://user-images.githubusercontent.com/57585087/131213444-1834ebb3-30b1-46aa-b08e-02d4e92b85e7.png)
 
 <hr>
 
-![AddPeer](screenshoots/add_peer.png)
+![add_peer](https://user-images.githubusercontent.com/57585087/131213441-d2c358ad-4e91-4932-84ea-60cb4dbf5b4f.png)
 
 ### Features
 
