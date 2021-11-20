@@ -61,7 +61,7 @@ export default function Home() {
     };
 
     const handleChange = (e) => {
-        const { value } = e.target;
+        const value  = e.target.value.toLowerCase();
         if (value) {
             setSelectedCategory("");
             const newList = peerList.filter((item) => {

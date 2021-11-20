@@ -61,6 +61,7 @@ const Peers = ({ peers }) => {
                       <Button
                         variant="primary"
                         target="_blank"
+                        id="more-information-button"
                         onClick={() => {
                           setModalShow(true);
                           setSuperpeer(peer.Superpeer);

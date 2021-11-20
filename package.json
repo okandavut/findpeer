@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "cypress": "cypress open"
   },
   "dependencies": {
     "@material-ui/core": "^4.11.0",
@@ -23,5 +24,8 @@
     "react-dom": "^17.0.1",
     "react-responsive": "^8.1.1",
     "styled-components": "^5.2.1"
+  },
+  "devDependencies": {
+    "cypress": "^9.0.0"
   }
 }

@@ -74,7 +74,7 @@ const UserInformationModal = ({
               <Button href={superpeer} target="_blank">
                 Let's Talk
               </Button>
-              <Button variant="danger" onClick={onHide}>
+              <Button variant="danger" onClick={onHide} id="close-modal-button">
                 Close
               </Button>
             </Modal.Footer>
