@@ -9,6 +9,7 @@ const Peers = ({ peers }) => {
   const [superpeer, setSuperpeer] = useState("");
   const [loading, setLoading] = useState(false);
 
+  console.log("peers", peers);
   const getSuperpeerInformation = (username) => {
     username = username.split("/")[3];
     setLoading(true);
@@ -38,7 +39,12 @@ const Peers = ({ peers }) => {
                   >
                     <Card.Img
                       variant="top"
-                      src={peer.ImgUrl}
+                      src={
+                        peer.ImgUrl &&
+                        peer.ImgUrl.includes("https://storage.googleapis.com")
+                          ? peer.ImgUrl
+                          : "/default.png"
+                      }
                       alt="peerPicture"
                       style={{
                         width: "5rem",
